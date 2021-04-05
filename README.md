@@ -46,9 +46,18 @@ You can use any Web-browsers to view the results folders, "./runs":
 ```
 http://0.0.0.0:18881/jetty_base/
 ```
-You can see the [sample Web page](https://github.com/DrSnowbird/yolov5-docker/blob/master/doc/yolov5-fileserver.png) in
+You can see the [sample Web page](https://github.com/DrSnowbird/yolov5-mongo-docker/blob/master/doc/yolov5-fileserver.png) in
 ```
 ./doc/yolov5-fileserver.png
+```
+
+## Start MongoDB and MongoDB Express (Web-based GUI)
+```
+make up-mongo
+```
+Then, open URL using Web browsers, e.g, Firefox, Chrome, etc.
+```
+http://0.0.0.0:28082/
 ```
 
 # Customized (Detect/Test)
@@ -62,7 +71,7 @@ You can see the [sample Web page](https://github.com/DrSnowbird/yolov5-docker/bl
 └── Whatever_Model_v5.pt
 
 2. (Enter the Container): ./run.sh bash
-3. Results outside the Container (in Host computer's currect yolov5-docker/runs directory) as below:
+3. Results outside the Container (in Host computer's currect yolov5-mongo-docker/runs directory) as below:
 ./runs
 └── detect
     ├── exp
