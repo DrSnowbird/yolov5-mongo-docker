@@ -1,4 +1,6 @@
 # YOLOv5 experimental modules
+import re
+from os import path
 
 import numpy as np
 import torch
@@ -114,7 +116,16 @@ def attempt_load(weights, map_location=None):
     # Loads an ensemble of models weights=[a,b,c] or a single model weights=[a] or weights=a
     model = Ensemble()
     for w in weights if isinstance(weights, list) else [weights]:
-        attempt_download(w)
+        matchObj = re.match(r'(.*customized)/(.*\.pt)', w, re.M | re.I)
+        if matchObj:
+            print(">>>> FOUND: WEIGHTS: MODEL: customized: local file")
+        else:
+            print(">>>> LOAD: WEIGHTS: MODEL: remote: git repo")
+        if path.exists(w):
+            print(f".... FOUND: WEIGHTS: MODEL: EXIST: LOCAL: ${w}")
+        else:
+            print(f".... LOAD: WEIGHTS: MODEL: DOWNLOAD: ${w}: git repo")
+            attempt_download(w)
         ckpt = torch.load(w, map_location=map_location)  # load
         model.append(ckpt['ema' if ckpt.get('ema') else 'model'].float().fuse().eval())  # FP32 model
 

@@ -261,3 +261,4 @@ fabric.properties
 **/*SAVE*/
 **/*OLD*/
 **/workspace*/
+**/*.tmp
