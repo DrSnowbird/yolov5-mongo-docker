@@ -68,6 +68,7 @@ echo "----------------------------------------"
 # -- outputs in <MY_PROJECT>/<MY_NAME>
 MY_PROJECT=${MY_PROJECT:-runs/detect}
 MY_NAME=${MY_NAME:-exp}
+echo "OUTPUT: RUN: FOLDER: ${MY_PROJECT}/${MY_NAME}"
 
 echo "----------------------------------------"
 echo "---- 6. DETECT: IMAGES: RUN: setup: ----"
@@ -80,7 +81,7 @@ python detect.py --source ${SOURCE_IMAGES} --weights ${WEIGHTS} --conf-thres ${C
 # CPU
 #python detect.py --source ${SOURCE_IMAGES} --device cpu --weights ${WEIGHTS} --conf-thres ${CONFIDENCE} --save-txt --save-conf
 
-# JSON - not works
+# JSON - not works (to-do: modify detect.py to support JSON)
 #python detect.py --source ${SOURCE_IMAGES} --weights ${WEIGHTS} --conf ${CONFIDENCE} --save-json
 
 set +x

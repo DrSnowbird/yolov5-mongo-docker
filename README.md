@@ -54,6 +54,8 @@ You can see the [sample Web page](https://github.com/DrSnowbird/yolov5-mongo-doc
 ```
 
 ## Start MongoDB and MongoDB Express (Web-based GUI)
+MongoDB can be used to store the results of 'detect.py' for
+large batch process when providing web services, e.g., REST API or Web UI.
 ```
 make up-mongo
 ```
