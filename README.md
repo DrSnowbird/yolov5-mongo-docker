@@ -21,16 +21,18 @@ SOURCE_IMAGES=./images
 You can change to whatever images folder:
 ```
 SOURCE_IMAGES=./my_images
-(make sure you also change the volume mapping line as)
+(make sure you also change the volume mapping line as below)
 (note: you need to use #VOLUMES_LIST as it is to work)
-#VOLUMES_LIST="./my_images:/usr/src/images ... (remaining setup)"
+#VOLUMES_LIST="./my_images:/usr/src/my_images ... (remaining setup)"
 ```
 2. If 'empty' in step 1, then it will use alternatives folders:
-- "./images", 
-- "./data/images"
+- "./my_images" (if you create your own 'my_images' folder in the Host computer)
+- "./images" 
+- "./data/images"  (the default demo images - other folder failed to provide)
+
 3. If none of above has images files found, it will abort. Exit 1
 
-## Run (into the Container)
+## Run (if you want to go into the Container)
 ```
 ./run.sh bash
 ```
@@ -68,10 +70,12 @@ http://0.0.0.0:28082/
 │   └── zidane.jpg
 ├── requirements.txt
 ├── run-detect.sh
-└── Whatever_Model_v5.pt
+└── (Whatever_Your_Own_Model_v5.pt)
 
-2. (Enter the Container): ./run.sh bash
-3. Results outside the Container (in Host computer's currect yolov5-mongo-docker/runs directory) as below:
+2. From the Host Shell Xterm: ./run.sh
+It will first call ./run-detect.sh (default) which, in turns, it will run your ./customized/run-detect.sh to do whatever you coded your logic in it and it will generate results in the HOST computer directory, ./runs folder.
+
+3. Results outside the Container (in Host computer's currect yolov5-docker/runs directory) as below:
 ./runs
 └── detect
     ├── exp
@@ -79,6 +83,7 @@ http://0.0.0.0:28082/
     │   ├── labels
     │   └── zidane.jpg
 ```
+----
 # (Inherited from upstream)
 <a href="https://apps.apple.com/app/id1452689527" target="_blank">
 <img src="https://user-images.githubusercontent.com/26833433/98699617-a1595a00-2377-11eb-8145-fc674eb9b1a7.jpg" width="1000"></a>
