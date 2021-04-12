@@ -12,8 +12,8 @@ torchvision>=0.8.1
 tqdm>=4.41.0
 
 # logging -------------------------------------
-tensorboard>=2.4.1
-# wandb
+# tensorboard>=2.4.1
+wandb
 
 # plotting ------------------------------------
 seaborn>=0.11.0
@@ -28,5 +28,17 @@ pandas
 thop  # FLOPS computation
 pycocotools>=2.0  # COCO mAP
 
+# OPTIONS --------------------------------------
+#   to support Post processing of Yolov5 results
+# 1. MongoDB
+# 2. Excel conversion
+# 3. Web REST API for UI and web services
+
 # Mongo
 pymongo
+
+# Excel
+xlwt
+
+# Flask
+flask
