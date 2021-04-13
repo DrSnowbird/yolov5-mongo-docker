@@ -39,6 +39,10 @@ pymongo
 
 # Excel
 xlwt
+openpyxl
 
 # Flask
 flask
+
+# Media (Images/Video meta data accessor)
+tinytag

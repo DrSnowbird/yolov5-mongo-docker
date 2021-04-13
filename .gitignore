@@ -27,6 +27,7 @@
 
 storage.googleapis.com
 runs/*
+!runs/.dummy.txt
 #!data/*
 !data/images/zidane.jpg
 !data/images/bus.jpg
