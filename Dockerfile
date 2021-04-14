@@ -4,6 +4,24 @@ FROM python:3.8.8
 
 MAINTAINER DrSnowbird "DrSnowbird@openkbs.org"
 
+##############################################
+#### ---- Installation Directories   ---- ####
+##############################################
+ENV INSTALL_DIR=${INSTALL_DIR:-/usr/src}
+ENV SCRIPT_DIR=${SCRIPT_DIR:-$INSTALL_DIR/scripts}
+
+##############################################
+#### ---- Corporate Proxy Auto Setup ---- ####
+##############################################
+#### ---- Transfer setup ---- ####
+RUN mkdir -p ${SCRIPT_DIR} && ls -al ${SCRIPT_DIR}
+COPY ./scripts ${SCRIPT_DIR}
+RUN ls -al ${SCRIPT_DIR} 
+RUN chmod +x ${SCRIPT_DIR}/*.sh
+
+#### ---- Apt Proxy & NPM Proxy & NPM Permission setup if detected: ---- ####
+RUN cd ${SCRIPT_DIR} ; ${SCRIPT_DIR}/setup_system_proxy.sh
+
 # Install linux packages
 RUN apt update && apt install -y vim zip htop screen libgl1-mesa-glx
 

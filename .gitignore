@@ -263,3 +263,5 @@ fabric.properties
 **/*OLD*/
 **/workspace*/
 **/*.tmp
+**/*tmp/
+
