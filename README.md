@@ -91,6 +91,7 @@ It will first call ./run-detect.sh (default) which, in turns, it will run your .
 
 # Corporate Proxy Root and Intemediate Certificates setup for System and Web Browsers (FireFox, Chrome, etc)
 1. Save your corporate's Certificates in the currnet GIT directory, `./certificates`
+First, you need to get your corporate's proxy certificates. You may want to get from your Network/IT department to download the certificate(s), e..g, my_company.crt and then put it in the `./certificates`. The automation script in Dockefile will detect the existence of such certificate files and then automatically load them into the Container images being built in progress.
 2. During Docker run command, 
 ```
    -v `pwd`/certificates:/certificates ... (the rest parameters)
