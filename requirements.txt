@@ -12,7 +12,7 @@ torchvision>=0.8.1
 tqdm>=4.41.0
 
 # logging -------------------------------------
-# tensorboard>=2.4.1
+#tensorboard>=2.4.1
 wandb
 
 # plotting ------------------------------------
@@ -46,3 +46,6 @@ flask
 
 # Media (Images/Video meta data accessor)
 tinytag
+
+# HTTP
+requests
