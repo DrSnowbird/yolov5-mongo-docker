@@ -1,0 +1,105 @@
+version: '3.3' 
+
+services:
+  yolov5-mongo-docker:
+    container_name: yolov5-mongo-docker
+    image: openkbs/yolov5-mongo-docker
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - ./.env
+    environment:
+      - CONTAINER_NAME=yolov5-mongo-docker
+      - USER_ID=${USER_ID:-1000}
+      - GROUP_ID=${GROUP_ID:-1000}
+      # - APP_HOME=${APP_HOME:-/home/developer/app}
+      # - APP_MAIN=${APP_MAIN:-setup.sh}
+      - DOCKER_HOST_IP=${DOCKER_HOST_IP:-127.0.0.1}
+      - DOCKER_HOST_NAME=${DOCKER_HOST_NAME:-localhost}
+      # ==== X11 Use only ====
+      - DISPLAY=$DISPLAY
+      - DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
+      # ==== vnc/no-vnc ====
+      #- WINDOW_MANAGER=xfce 
+      #- VNC_RESOLUTION=1280x800 
+      #- VNC_PW=vncpassword 
+    volumes:
+      ## ==== Common mapping ====
+      - /etc/hosts:/etc/hosts
+      # - /dev/shm:/dev/shm 
+      - /var/run/docker.sock:/var/run/docker.sock
+      # - /tmp/.X11-unix:/tmp/.X11-unix
+      #- ./certificates:/home/developer/certificates
+      ## ==== Use $HOME/data-docker as base directory: ====
+      #- $HOME/data-docker/yolov5-mongo-docker/data:/home/developer/data
+      #- $HOME/data-docker/yolov5-mongo-docker/workspace:/home/developer/workspace
+      ## ==== Use current directory as root for mapping Volumes ====
+      ## (You need to manually create those child directory: ./data, ./workspace, and others)
+      # - ./data:/home/developer/data
+      - ./workspace:/home/developer/workspace
+    links:
+      - mongo
+
+
+  yolov5-fileserver:
+    image: openkbs/jetty-fileserver
+    #build:
+    #  context: .
+    #  dockerfile: Dockerfile
+    container_name: yolov5-fileserver
+    environment:
+      - USER_ID=${USER_ID:-1000}
+      - GROUP_ID=${GROUP_ID:-1000}
+    env_file:
+      - .env
+    ports:
+      - 18882:8080
+    restart: always
+    volumes:
+      - ./runs:/home/developer/jetty_base
+
+  mongo:
+    image: mongo:latest
+    restart: always
+    container_name: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongoadmin
+      MONGO_INITDB_ROOT_PASSWORD: mongoadmin
+      MONGODB_AUTH_DATABASE: admin
+    ports:
+      - 27017:27017
+    #command: --smallfiles 
+    volumes:
+      - type: volume
+        source: mongodb_data_volume
+        target: /data/db
+
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    restart: always
+    ports:
+      - "28081:8081"
+    environment:
+      ME_CONFIG_MONGODB_AUTH_DATABASE: admin
+      ME_CONFIG_MONGODB_AUTH_USERNAME: mongoadmin
+      ME_CONFIG_MONGODB_AUTH_PASSWORD: mongoadmin
+      ME_CONFIG_MONGODB_ADMINUSERNAME: mongoadmin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: mongoadmin
+    depends_on:
+      - mongo
+    links:
+      - mongo
+
+volumes:
+  mongodb_data_volume:
+    # driver: local 
+
+#networks:
+#  dev_network:
+#    external:
+#      name: dev_network
+
+

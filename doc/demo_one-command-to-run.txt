@@ -1,0 +1,155 @@
+cyber03:~/git-public/yolov5-mongo-docker$ ./run.sh
+--------------------------------------------------------
+Usage: 
+  ./run.sh <container_shell_command>
+e.g.: 
+  ./run.sh ls -al 
+  ./run.sh /bin/bash 
+--------------------------------------------------------
+RUN_TYPE=0
+RUN_OPTION= -it 
+RESTART_OPTION=no
+REMOVE_OPTION= --rm 
+HOST_IP=10.8.32.192
+*** WARNING: Docker Run Environment file './docker-run.env' NOT found!
+*** WARNING: Searching for .env or docker.env as alternative!
+*** --->
+--- INFO: ./.env FOUND to use as Docker Run Environment file!
+
+>>>>>>>>> ./images:/usr/src/app/images
+************* hasColon=./images:/usr/src/app/images
+******* A-1 -- pattern like ./data:/data --
+total 656
+drwxr-xr-x  2 rsheu rsheu   4096 Apr 13 15:03 .
+drwxr-xr-x 10 rsheu rsheu   4096 Apr 13 15:03 ..
+-rw-r--r--  1 rsheu rsheu 487438 Apr 13 15:03 bus.jpg
+-rw-r--r--  1 rsheu rsheu 168949 Apr 13 15:03 zidane.jpg
+>>> expanded VOLUME_MAP:  -v /home/rsheu/git-public/yolov5-mongo-docker/images:/usr/src/app/images
+
+>>>>>>>>> ./runs:/usr/src/app/runs
+************* hasColon=./runs:/usr/src/app/runs
+******* A-1 -- pattern like ./data:/data --
+total 12
+drwxr-xr-x  2 rsheu rsheu 4096 Apr 13 15:03 .
+drwxr-xr-x 10 rsheu rsheu 4096 Apr 13 15:03 ..
+-rw-r--r--  1 rsheu rsheu    1 Apr 13 15:03 .dummy.txt
+>>> expanded VOLUME_MAP:  -v /home/rsheu/git-public/yolov5-mongo-docker/images:/usr/src/app/images -v /home/rsheu/git-public/yolov5-mongo-docker/runs:/usr/src/app/runs
+
+>>>>>>>>> ./customized:/usr/src/app/customized
+************* hasColon=./customized:/usr/src/app/customized
+******* A-1 -- pattern like ./data:/data --
+total 8
+drwxr-xr-x  2 rsheu rsheu 4096 Apr 13 15:04 .
+drwxr-xr-x 11 rsheu rsheu 4096 Apr 13 15:04 ..
+>>> expanded VOLUME_MAP:  -v /home/rsheu/git-public/yolov5-mongo-docker/images:/usr/src/app/images -v /home/rsheu/git-public/yolov5-mongo-docker/runs:/usr/src/app/runs -v /home/rsheu/git-public/yolov5-mongo-docker/customized:/usr/src/app/customized
+
+>>>>>>>>> ./workspace:/usr/src/app/workspace
+************* hasColon=./workspace:/usr/src/app/workspace
+******* A-1 -- pattern like ./data:/data --
+total 8
+drwxr-xr-x  2 rsheu rsheu 4096 Apr 13 15:04 .
+drwxr-xr-x 12 rsheu rsheu 4096 Apr 13 15:04 ..
+>>> expanded VOLUME_MAP:  -v /home/rsheu/git-public/yolov5-mongo-docker/images:/usr/src/app/images -v /home/rsheu/git-public/yolov5-mongo-docker/runs:/usr/src/app/runs -v /home/rsheu/git-public/yolov5-mongo-docker/customized:/usr/src/app/customized -v /home/rsheu/git-public/yolov5-mongo-docker/workspace:/usr/src/app/workspace
+
+>>>>>>>>> /var/run/docker.sock:/var/run/docker.sock
+************* hasColon=/var/run/docker.sock:/var/run/docker.sock
+****** B-1-a pattern like /data:/containerPath/data --
+mkdir: cannot create directory ‘/var/run/docker.sock’: File exists
+*** ERROR: /var/run/docker.sock: Not existing!
+>>> expanded VOLUME_MAP:  -v /home/rsheu/git-public/yolov5-mongo-docker/images:/usr/src/app/images -v /home/rsheu/git-public/yolov5-mongo-docker/runs:/usr/src/app/runs -v /home/rsheu/git-public/yolov5-mongo-docker/customized:/usr/src/app/customized -v /home/rsheu/git-public/yolov5-mongo-docker/workspace:/usr/src/app/workspace -v /var/run/docker.sock:/var/run/docker.sock
+-v /home/rsheu/git-public/yolov5-mongo-docker/images:/usr/src/app/images -v /home/rsheu/git-public/yolov5-mongo-docker/runs:/usr/src/app/runs -v /home/rsheu/git-public/yolov5-mongo-docker/customized:/usr/src/app/customized -v /home/rsheu/git-public/yolov5-mongo-docker/workspace:/usr/src/app/workspace -v /var/run/docker.sock:/var/run/docker.sock
+PORT_MAP= -p 8280:8280
+Line=DOCKER_HOST_IP=0.0.0.0
+Line=DOCKER_HOST_NAME=localhost
+Line=USER_ID=1000
+Line=GROUP_ID=1000
+Line=CONFIDENCE=0.5
+Line=SOURCE_IMAGES=./images
+Line=WEIGHTS_DIRECTORY=./weights/
+Line=WEIGHTS_URL=https://github.com/ultralytics/yolov5/releases/download/v4.0/yolov5s.pt
+Line=MY_PROJECT=./runs/detect
+Line=MY_NAME=exp
+Line=CUSTOMIZED_DETECT_BASH=./customized/run-detect.sh
+ENV_VARS= -e HOST_IP=10.8.32.192  -e DOCKER_HOST_IP=0.0.0.0 -e DOCKER_HOST_NAME=localhost -e USER_ID=1000 -e GROUP_ID=1000 -e CONFIDENCE=0.5 -e SOURCE_IMAGES=./images -e WEIGHTS_DIRECTORY=./weights/ -e WEIGHTS_URL=https://github.com/ultralytics/yolov5/releases/download/v4.0/yolov5s.pt -e MY_PROJECT=./runs/detect -e MY_NAME=exp -e CUSTOMIZED_DETECT_BASH=./customized/run-detect.sh
+>> ENV_VARS= -e HOST_IP=10.8.32.192  -e DOCKER_HOST_IP=0.0.0.0 -e DOCKER_HOST_NAME=localhost -e USER_ID=1000 -e GROUP_ID=1000 -e CONFIDENCE=0.5 -e SOURCE_IMAGES=./images -e WEIGHTS_DIRECTORY=./weights/ -e WEIGHTS_URL=https://github.com/ultralytics/yolov5/releases/download/v4.0/yolov5s.pt -e MY_PROJECT=./runs/detect -e MY_NAME=exp -e CUSTOMIZED_DETECT_BASH=./customized/run-detect.sh
+... Setup Docker Run Proxy: ...
+ENV_VARS= -e HOST_IP=10.8.32.192  -e DOCKER_HOST_IP=0.0.0.0 -e DOCKER_HOST_NAME=localhost -e USER_ID=1000 -e GROUP_ID=1000 -e CONFIDENCE=0.5 -e SOURCE_IMAGES=./images -e WEIGHTS_DIRECTORY=./weights/ -e WEIGHTS_URL=https://github.com/ultralytics/yolov5/releases/download/v4.0/yolov5s.pt -e MY_PROJECT=./runs/detect -e MY_NAME=exp -e CUSTOMIZED_DETECT_BASH=./customized/run-detect.sh 
+Ubuntu ... not SE-Lunix ... no privileged needed
+
+HOST_IP=10.8.32.192 -e DOCKER_HOST_IP=0.0.0.0 -e DOCKER_HOST_NAME=localhost -e USER_ID=1000 -e GROUP_ID=1000 -e CONFIDENCE=0.5 -e SOURCE_IMAGES=./images -e WEIGHTS_DIRECTORY=./weights/ -e WEIGHTS_URL=https://github.com/ultralytics/yolov5/releases/download/v4.0/yolov5s.pt -e MY_PROJECT=./runs/detect -e MY_NAME=exp -e CUSTOMIZED_DETECT_BASH=./customized/run-detect.sh
+---------------------------------------------
+---- Starting a Container for openkbs/yolov5-mongo-docker
+---------------------------------------------
+--------------------------------------------------------
+==> Commands to manage Container:
+--------------------------------------------------------
+  ./shell.sh : to shell into the container
+  ./stop.sh  : to stop the container
+  ./log.sh   : to show the docker run log
+  ./build.sh : to build the container
+  ./commit.sh: to push the container image to docker hub
+--------------------------------------------------------
+CERTIFICATE_OPTIONS=
+Unable to find image 'openkbs/yolov5-mongo-docker:latest' locally
+latest: Pulling from openkbs/yolov5-mongo-docker
+004f1eed87df: Already exists 
+5d6f1e8117db: Already exists 
+48c2faf66abe: Already exists 
+234b70d0479d: Already exists 
+6fa07a00e2f0: Already exists 
+04a31b4508b8: Already exists 
+d71f59bc3dca: Already exists 
+1417d35049f1: Already exists 
+7deb1706395d: Already exists 
+0e6b1dc88e61: Pull complete 
+65de2beea71a: Pull complete 
+c667ed0a289f: Pull complete 
+a045f67d76f2: Pull complete 
+047162c4fa21: Pull complete 
+c5a751af5366: Pull complete 
+1d6f57209c72: Pull complete 
+Digest: sha256:300226407092b806ecac2a6f1eb557cfd673dc340f2458c4f7ea81441f6e2701
+Status: Downloaded newer image for openkbs/yolov5-mongo-docker:latest
+------------------------------------------------
+---- 1. CUSTIMIZED: SCRIPTS: DETECT: setup: ----
+------------------------------------------------
+... NOT FOUND: No './customized/run-detect.sh' script found -- USE Demo script: './run-detect.sh' ...
+-------------------------------------------
+---- 2. INPUT: WEIGHTS: FOLDER: setup: ----
+-------------------------------------------
+>>>> DEMO: using https://github.com/ultralytics/yolov5/releases/download/v4.0/yolov5s.pt Weights (trained model) ....
+>>>> FOUND: Yolo pre-trained Model weights-and-bias: ./weights/yolov5s.pt
+INPUT: WEIGHTS: FOLDER: ./weights/yolov5s.pt
+--------------------------------------
+---- 3. INPUT: CONFIDENCE: setup: ----
+--------------------------------------
+INPUT: OUPUT: CONFIDENCE: 0.5
+------------------------------------------
+---- 4. INPUT: IMAGES: FOLDER: setup: ----
+------------------------------------------
+>>>> INPUT: IMAGES: FOLDER: ./images
+.... INPUT: IMAGES: CHECK: Any files in it? ....
+.... INPUT: IMAGES: FOUND: ./images: Not empty: OK to use.
+INPUT: IMAGES: FOLDER:: ./images
+----------------------------------------
+---- 5. OUTPUT: RUN: FOLDER: setup: ----
+----------------------------------------
+OUTPUT: RUN: FOLDER: ./runs/detect/exp
+----------------------------------------
+---- 6. DETECT: IMAGES: RUN: setup: ----
+----------------------------------------
++ python detect.py --source ./images --weights ./weights/yolov5s.pt --conf-thres 0.5 --save-txt --save-conf
+Namespace(agnostic_nms=False, augment=False, classes=None, conf_thres=0.5, device='', exist_ok=False, img_size=640, iou_thres=0.45, name='exp', nosave=False, project='runs/detect', save_conf=True, save_txt=True, source='./images', update=False, view_img=False, weights=['./weights/yolov5s.pt'])
+YOLOv5 🚀 0b8beac torch 1.8.1+cu102 CPU
+
+>>>> LOAD: WEIGHTS: MODEL: remote: git repo
+.... FOUND: WEIGHTS: MODEL: EXIST: LOCAL: $./weights/yolov5s.pt
+Fusing layers... 
+[W NNPACK.cpp:80] Could not initialize NNPACK! Reason: Unsupported hardware.
+Model Summary: 224 layers, 7266973 parameters, 0 gradients, 17.0 GFLOPS
+image 1/2 /usr/src/app/images/bus.jpg: 640x480 3 persons, 1 bus, Done. (0.902s)
+image 2/2 /usr/src/app/images/zidane.jpg: 384x640 2 persons, 1 tie, Done. (0.590s)
+Results saved to runs/detect/exp
+2 labels saved to runs/detect/exp/labels
+Done. (1.685s)
++ set +x
