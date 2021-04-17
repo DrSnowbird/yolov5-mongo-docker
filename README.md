@@ -17,9 +17,14 @@
 ## Run (GPU/Nvidia)
 * To run GPU/Nvidia, you need to install the Nvidia Driver first and then install 'nvidia-docker2'.
 * Please refer to [Nvidia Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker) documentation for how to install properly
-* It will download 'yolov5s.pt' on-the-fly to use if not existing.
+* You also need to setup Nvidia related environment variable and export them. It's recommended to setup them 
+in your '.bashrc' profile.
 
 ```
+#### ---- Nvidia driver and docker2 needs: ---- ####
+export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+
 ./run.sh -g
 ```
 
