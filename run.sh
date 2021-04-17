@@ -39,6 +39,19 @@ if [ "$1" = "-d" ]; then
 fi
 RUN_TYPE=${RUN_TYPE:-0}
 
+            ${GPU_OPTION} \
+
+## ------------------------------------------------------------------------
+## Run with GPU or not
+##    0: (default) Not using host's USER / GROUP ID
+##    1: Yes, using host's USER / GROUP ID for Container running.
+## ------------------------------------------------------------------------ 
+GPU_OPTION=
+if [ "$1" = "-g" ]; then
+    GPU_OPTION="--gpus all "
+    shift 1
+fi
+
 ## ------------------------------------------------------------------------
 ## Change to one (1) if run.sh needs to use host's user/group to run the Container
 ## Valid "USER_VARS_NEEDED" values: 
@@ -707,6 +720,7 @@ case "${BUILD_TYPE}" in
         sudo docker run \
             --name=${instanceName} \
             --restart=${RESTART_OPTION} \
+            ${GPU_OPTION} \
             ${REMOVE_OPTION} ${RUN_OPTION} ${MORE_OPTIONS} ${CERTIFICATE_OPTIONS} \
             ${privilegedString} \
             ${USER_VARS} \
@@ -728,6 +742,7 @@ case "${BUILD_TYPE}" in
         sudo docker run \
             --name=${instanceName} \
             --restart=${RESTART_OPTION} \
+            ${GPU_OPTION} \
             ${REMOVE_OPTION} ${RUN_OPTION} ${MORE_OPTIONS} ${CERTIFICATE_OPTIONS} \
             ${X11_OPTION} ${MEDIA_OPTIONS} \
             ${privilegedString} \

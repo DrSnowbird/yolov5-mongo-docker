@@ -1,4 +1,5 @@
-# Yolov5 Docker (Python 3.8 build - CPU default) with Web File Server to view Results
+# Yolov5 Docker (Python 3.8 build - CPU default / GPU also) with Web File Server to view Results
+* `New`- './run.sh -g' to run Nvidia CUDA Docker (though you need to install Nvidia Driver etc.)
 * Simple BASH commands to Build, or Run.
 * Jetty File Server to use Web Browsers for view the results.
 
@@ -6,12 +7,22 @@
 ```
 ./build.sh
 ```
-## Run (demo)
+## Run (CPU - default)
 * It will download 'yolov5s.pt' on-the-fly to use if not existing.
 
 ```
 ./run.sh
 ```
+
+## Run (GPU/Nvidia)
+* To run GPU/Nvidia, you need to install the Nvidia Driver first and then install 'nvidia-docker2'.
+* Please refer to [Nvidia Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker) documentation for how to install properly
+* It will download 'yolov5s.pt' on-the-fly to use if not existing.
+
+```
+./run.sh -g
+```
+
 ## Images (Input folders)
 Input images folders following the sequence of checking (for not empty)
 1. '.env' file: 
