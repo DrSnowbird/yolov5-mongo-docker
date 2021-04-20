@@ -39,8 +39,10 @@ if [ "$1" = "-d" ]; then
 fi
 RUN_TYPE=${RUN_TYPE:-0}
 
-            ${GPU_OPTION} \
 
+########################################
+#### ---- NVIDIA  Checking ---- ####
+########################################
 ## ------------------------------------------------------------------------
 ## Run with GPU or not
 ##    0: (default) Not using host's USER / GROUP ID
@@ -48,9 +50,33 @@ RUN_TYPE=${RUN_TYPE:-0}
 ## ------------------------------------------------------------------------ 
 GPU_OPTION=
 if [ "$1" = "-g" ]; then
-    GPU_OPTION="--gpus all "
+    GPU_OPTION=" --gpus all "
     shift 1
 fi
+NVIDIA_DOCKER_AVAILABLE=0
+function check_NVIDIA() {
+    NVIDIA_PCI=`lspci | grep VGA`
+    if [ "$NVIDIA_PCI" == "" ]; then
+        echo "---- No Nvidia PCI found available. No Nvidia GPU physical card(s) available"
+        GPU_OPTION=
+    else
+        which nvidia-smi
+        if [ $? -ne 0 ]; then
+            echo "---- No nvidia-smi command available. No Nvidia GPU driver available"
+            GPU_OPTION=
+        else
+            NVIDIA_SMI=`nvidia-smi | grep -i NVIDIA`
+            if [ "$NVIDIA_SMI" == "" ]; then
+                echo "---- No nvidia-smi command not function correctly."
+                GPU_OPTION=
+            else
+                echo ">>>> Found GPU: Use GPU now"
+                GPU_OPTION=" --gpus all "
+            fi
+        fi
+    fi
+}
+check_NVIDIA
 
 ## ------------------------------------------------------------------------
 ## Change to one (1) if run.sh needs to use host's user/group to run the Container

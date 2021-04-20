@@ -7,30 +7,28 @@
 ```
 ./build.sh
 ```
-## Run (CPU - default)
+## Run (CPU)
 * It will download 'yolov5s.pt' on-the-fly to use if not existing.
 
 ```
 ./run.sh
 ```
 
-## Run (GPU/Nvidia)
+## Run (GPU/Nvidia - Auto Enable)
 * To run GPU/Nvidia, you need to install the Nvidia Driver first and then install 'nvidia-docker2'.
 * Please refer to [Nvidia Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker) documentation for how to install properly
-* You also need to setup Nvidia related environment variable and export them. It's recommended to setup them 
-in your '.bashrc' profile.
-
+* You need to setup environment variables once you have successfully install Nvidia driver and Nvidia-docker2 Container Toolkit before you run Docker (trying to use nvidia-docker2). 
+It's recommended to setup in your '.bashrc' profile.
 ```
-#### ---- Nvidia driver and docker2 needs: ---- ####
 export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
-./run.sh -g
+./run.sh
 ```
 
 ## Images (Input folders)
 Input images folders following the sequence of checking (for not empty)
-1. '.env' file: 
+1. '.env' file to setup 'INPUT images folder' (not recursive by Yolov5 as default): 
 ```
 SOURCE_IMAGES=./images
 ```

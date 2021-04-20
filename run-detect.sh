@@ -10,8 +10,9 @@ if [ -s ${CUSTOMIZED_DETECT_BASH} ]; then
     #./run-detect.sh
     ${CUSTOMIZED_DETECT_BASH}
     exit 0
+else
+    echo "... NOT FOUND: './customized/run-detect.sh' script found -- USE Demo script: './run-detect.sh' ..."
 fi
-echo "... NOT FOUND: No './customized/run-detect.sh' script found -- USE Demo script: './run-detect.sh' ..."
 
 echo "-------------------------------------------"
 echo "---- 2. INPUT: WEIGHTS: FOLDER: setup: ----"

@@ -10,7 +10,7 @@ FROM_BASE=${FROM_BASE:-centos:8}
 imageTag=${imageTag:-"${ORGANIZATION}/${APPLICATION_NAME}"}
 
 ## Docker Registry (Private Server)
-#REGISTRY_HOST=${REGISTRY_HOME:-recast-dev-2.mitre.org:5000}
+#REGISTRY_HOST=${REGISTRY_HOME:-registry.openkbs.org:5000}
 #REGISTRY_IMAGE=${REGISTRY_HOST}/${imageTag}
 VERSION=${APP_VERSION}-$(date +%Y%m%d)
 

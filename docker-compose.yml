@@ -48,6 +48,7 @@ services:
     #  context: .
     #  dockerfile: Dockerfile
     container_name: yolov5-fileserver
+    restart: always
     environment:
       - USER_ID=${USER_ID:-1000}
       - GROUP_ID=${GROUP_ID:-1000}
@@ -55,14 +56,13 @@ services:
       - .env
     ports:
       - 18882:8080
-    restart: always
     volumes:
       - ./runs:/home/developer/jetty_base
 
   mongo:
     image: mongo:latest
-    restart: always
     container_name: mongo
+    restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: mongoadmin
       MONGO_INITDB_ROOT_PASSWORD: mongoadmin

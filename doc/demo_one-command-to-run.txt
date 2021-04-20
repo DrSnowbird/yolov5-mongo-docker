@@ -143,7 +143,7 @@ Namespace(agnostic_nms=False, augment=False, classes=None, conf_thres=0.5, devic
 YOLOv5 🚀 0b8beac torch 1.8.1+cu102 CPU
 
 >>>> LOAD: WEIGHTS: MODEL: remote: git repo
-.... FOUND: WEIGHTS: MODEL: EXIST: LOCAL: $./weights/yolov5s.pt
+.... FOUND: WEIGHTS: MODEL: EXIST: LOCAL: ./weights/yolov5s.pt
 Fusing layers... 
 [W NNPACK.cpp:80] Could not initialize NNPACK! Reason: Unsupported hardware.
 Model Summary: 224 layers, 7266973 parameters, 0 gradients, 17.0 GFLOPS

@@ -116,13 +116,13 @@ def attempt_load(weights, map_location=None):
     # Loads an ensemble of models weights=[a,b,c] or a single model weights=[a] or weights=a
     model = Ensemble()
     for w in weights if isinstance(weights, list) else [weights]:
-        matchObj = re.match(r'(.*customized)/(.*\.pt)', w, re.M | re.I)
-        if matchObj:
-            print(">>>> FOUND: WEIGHTS: MODEL: customized: local file")
-        else:
-            print(">>>> LOAD: WEIGHTS: MODEL: remote: git repo")
+        #matchObj = re.match(r'(.*customized)/(.*\.pt)', w, re.M | re.I)
+        #if matchObj:
+        #    print(">>>> FOUND: WEIGHTS: MODEL: customized: local file")
+        #else:
+        #    print(">>>> LOAD: WEIGHTS: MODEL: remote: git repo")
         if path.exists(w):
-            print(f".... FOUND: WEIGHTS: MODEL: EXIST: LOCAL: ${w}")
+            print(f".... FOUND: WEIGHTS: MODEL: EXIST: LOCAL: {w}")
         else:
             print(f".... LOAD: WEIGHTS: MODEL: DOWNLOAD: ${w}: git repo")
             attempt_download(w)
