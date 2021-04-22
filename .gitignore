@@ -265,6 +265,12 @@ fabric.properties
 **/*.tmp
 **/*tmp/
 **/certificates/*.crt
+!images/zidane.jpg
+!images/bus.jpg
+!images/sub-folder
+!images/sub-folder/sub-sub-folder/bus.jpg
+!images/sub-folder/bus.jpg
+
 !images/child1/zidane1.jpg
 !images/child1/grand_child1/zidane1.jpg
 !images/zidane.jpg

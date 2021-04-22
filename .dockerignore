@@ -221,3 +221,15 @@ fabric.properties
 **/*SAVE*/
 **/*OLD*/
 
+build.sh
+clean.sh
+commit-push.sh
+delete.sh
+docker-entrypoint.sh
+logs.sh
+restore.sh
+run.sh
+save.sh
+shell.sh
+stop.sh
+
