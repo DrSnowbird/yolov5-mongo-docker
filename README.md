@@ -3,15 +3,13 @@
 * Simple BASH commands to Build, or Run.
 * Jetty File Server to use Web Browsers for view the results.
 
-## Build
-```
-./build.sh
-```
 ## Run (CPU)
 * It will download 'yolov5s.pt' on-the-fly to use if not existing.
 
 ```
 ./run.sh
+or, explicitly disable GPU to use CPU.
+./run.sh -c
 ```
 
 ## Run (GPU/Nvidia - Auto Enable)
@@ -23,6 +21,8 @@ It's recommended to setup in your '.bashrc' profile.
 export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
+./run.sh -g
+or, let it auto check and use Nvidia GPU if available:
 ./run.sh
 ```
 
@@ -46,7 +46,13 @@ SOURCE_IMAGES=./my_images
 
 3. If none of above has images files found, it will abort. Exit 1
 
-## Run (if you want to go into the Container)
+## Build
+You can build local Container images if you like to:
+```
+./build.sh
+```
+
+## Run (go into the Container)
 ```
 ./run.sh bash
 ```

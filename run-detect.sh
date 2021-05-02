@@ -8,7 +8,7 @@ if [ -s ${CUSTOMIZED_DETECT_BASH} ]; then
     echo "Found customized run-detect.sh found, use it instead of this..."
     #cd ./customized
     #./run-detect.sh
-    ${CUSTOMIZED_DETECT_BASH}
+    ${CUSTOMIZED_DETECT_BASH} "$@"
     exit 0
 else
     echo "... NOT FOUND: './customized/run-detect.sh' script found -- USE Demo script: './run-detect.sh' ..."

@@ -14,6 +14,46 @@ if [ $# -lt 1 ]; then
     echo "--------------------------------------------------------"
 fi
 
+###################################################
+#### ---- Parse Command Line Arguments:  ---- #####
+###################################################
+IS_TO_RUN_CPU=0
+IS_TO_RUN_GPU=1
+
+PARAMS=""
+while (( "$#" )); do
+  case "$1" in
+    -c|--cpu)
+      IS_TO_RUN_CPU=1
+      IS_TO_RUN_GPU=0
+      GPU_OPTION=
+      shift
+      ;;
+    -g|--gpu)
+      IS_TO_RUN_CPU=0
+      IS_TO_RUN_GPU=1
+      GPU_OPTION=" --gpus all "
+      shift
+      ;;
+    -*|--*=) # unsupported flags
+      echo "Error: Unsupported flag $1" >&2
+      exit 1
+      ;;
+    *) # preserve positional arguments
+      PARAMS="$PARAMS $1"
+      shift
+      ;;
+  esac
+done
+# set positional arguments in their proper place
+eval set -- "$PARAMS"
+
+echo "-c (IS_TO_RUN_CPU): $IS_TO_RUN_CPU"
+echo "-g (IS_TO_RUN_GPU): $IS_TO_RUN_GPU"
+
+echo "remiaing args:"
+echo $*
+
 ###########################################################################
 #### ---- RUN Configuration (CHANGE THESE if needed!!!!)           --- ####
 ###########################################################################
@@ -48,11 +88,7 @@ RUN_TYPE=${RUN_TYPE:-0}
 ##    0: (default) Not using host's USER / GROUP ID
 ##    1: Yes, using host's USER / GROUP ID for Container running.
 ## ------------------------------------------------------------------------ 
-GPU_OPTION=
-if [ "$1" = "-g" ]; then
-    GPU_OPTION=" --gpus all "
-    shift 1
-fi
+
 NVIDIA_DOCKER_AVAILABLE=0
 function check_NVIDIA() {
     NVIDIA_PCI=`lspci | grep VGA | grep -i NVIDIA`
@@ -74,11 +110,16 @@ function check_NVIDIA() {
                 echo "${NVIDIA_SMI}"
                 GPU_OPTION=" --gpus all "
             fi
+            if [ ${IS_TO_RUN_CPU} -gt 0 ]; then
+                GPU_OPTION=
+            fi
         fi
     fi
 }
 check_NVIDIA
+echo "GPU_OPTION= ${GPU_OPTION}"
 
+echo "$@"
 
 ## ------------------------------------------------------------------------
 ## Change to one (1) if run.sh needs to use host's user/group to run the Container
@@ -756,7 +797,7 @@ case "${BUILD_TYPE}" in
             ${VOLUME_MAP} \
             ${PORT_MAP} \
             ${imageTag} \
-            $*
+            "$@"
         ;;
     1)
         #### 1: X11/Desktip container build image type
@@ -779,7 +820,7 @@ case "${BUILD_TYPE}" in
             ${VOLUME_MAP} \
             ${PORT_MAP} \
             ${imageTag} \
-            $*
+            "$@"
         ;;
     2)
         #### 2: VNC/noVNC container build image type
@@ -802,7 +843,7 @@ case "${BUILD_TYPE}" in
             ${VOLUME_MAP} \
             ${PORT_MAP} \
             ${imageTag} \
-            $*
+            "$@"
         ;;
 
 esac

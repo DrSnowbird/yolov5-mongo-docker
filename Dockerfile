@@ -42,9 +42,9 @@ COPY . /usr/src/app
 # Set environment variables
 ENV HOME=/usr/src/app
 
+ENTRYPOINT ["./docker-entrypoint.sh"]
 # Default run-detect.sh (It will detect the existence of ./customized/run-detect.sh, then run it instead)
-CMD ["/usr/src/app/run-detect.sh"]
-
+CMD ["./run-detect.sh"]
 # ---------------------------------------------------  Extras Below  ---------------------------------------------------
 
 # Build and Push
