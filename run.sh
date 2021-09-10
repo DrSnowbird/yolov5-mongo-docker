@@ -118,6 +118,7 @@ function check_NVIDIA() {
                 GPU_OPTION=" --gpus all "
             fi
             if [ ${IS_TO_RUN_CPU} -gt 0 ]; then
+                echo ">>>> Command flag 'IS_TO_RUN_CPU=${IS_TO_RUN_CPU}': Use CPU explicitly (Not to use GPU)"
                 GPU_OPTION=
             fi
         fi
