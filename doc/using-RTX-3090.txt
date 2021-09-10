@@ -1,0 +1,191 @@
+user1@galactica:/mnt/data/git-public/yolov5-mongo-docker$ ./run.sh
+--------------------------------------------------------
+Usage: 
+  ./run.sh <container_shell_command>
+e.g.: 
+  ./run.sh ls -al 
+  ./run.sh /bin/bash 
+--------------------------------------------------------
+-c (IS_TO_RUN_CPU): 0
+-g (IS_TO_RUN_GPU): 1
+remiaing args:
+
+/usr/bin/nvidia-smi
+>>>> Found Nvidia GPU: Use all GPU(s)!
+| NVIDIA-SMI 470.63.01    Driver Version: 470.63.01    CUDA Version: 11.4     |
+GPU_OPTION=  --gpus all 
+
+RUN_TYPE=0
+RUN_OPTION= -it 
+RESTART_OPTION=no
+REMOVE_OPTION= --rm 
+HOST_IP=192.168.0.121
+*** WARNING: Docker Run Environment file './docker-run.env' NOT found!
+*** WARNING: Searching for .env or docker.env as alternative!
+*** --->
+--- INFO: ./.env FOUND to use as Docker Run Environment file!
+
+>>>>>>>>> ./images:/usr/src/app/images
+************* hasColon=./images:/usr/src/app/images
+******* A-1 -- pattern like ./data:/data --
+total 660
+drwxrwxr-x  3 user1 user1   4096 Sep  9 18:03 .
+drwxrwxr-x 14 user1 user1   4096 Sep 10 00:04 ..
+-rw-rw-r--  1 user1 user1 487438 Sep  9 18:03 bus.jpg
+drwxrwxr-x  3 user1 user1   4096 Sep  9 18:03 sub-folder
+-rw-rw-r--  1 user1 user1 168949 Sep  9 18:03 zidane.jpg
+>>> expanded VOLUME_MAP:  -v /mnt/data/git-public/yolov5-mongo-docker/images:/usr/src/app/images
+
+>>>>>>>>> ./runs:/usr/src/app/runs
+************* hasColon=./runs:/usr/src/app/runs
+******* A-1 -- pattern like ./data:/data --
+total 16
+drwxrwxr-x  3 user1 user1 4096 Sep  9 18:11 .
+drwxrwxr-x 14 user1 user1 4096 Sep 10 00:04 ..
+drwxr-xr-x  6 user1 user1 4096 Sep  9 23:56 detect
+-rw-rw-r--  1 user1 user1    1 Sep  9 18:03 .dummy.txt
+>>> expanded VOLUME_MAP:  -v /mnt/data/git-public/yolov5-mongo-docker/images:/usr/src/app/images -v /mnt/data/git-public/yolov5-mongo-docker/runs:/usr/src/app/runs
+
+>>>>>>>>> ./customized:/usr/src/app/customized
+************* hasColon=./customized:/usr/src/app/customized
+******* A-1 -- pattern like ./data:/data --
+total 8
+drwxrwxr-x  2 user1 user1 4096 Sep  9 18:10 .
+drwxrwxr-x 14 user1 user1 4096 Sep 10 00:04 ..
+>>> expanded VOLUME_MAP:  -v /mnt/data/git-public/yolov5-mongo-docker/images:/usr/src/app/images -v /mnt/data/git-public/yolov5-mongo-docker/runs:/usr/src/app/runs -v /mnt/data/git-public/yolov5-mongo-docker/customized:/usr/src/app/customized
+
+>>>>>>>>> ./workspace:/usr/src/app/workspace
+************* hasColon=./workspace:/usr/src/app/workspace
+******* A-1 -- pattern like ./data:/data --
+total 8
+drwxrwxr-x  2 user1 user1 4096 Sep  9 18:10 .
+drwxrwxr-x 14 user1 user1 4096 Sep 10 00:04 ..
+>>> expanded VOLUME_MAP:  -v /mnt/data/git-public/yolov5-mongo-docker/images:/usr/src/app/images -v /mnt/data/git-public/yolov5-mongo-docker/runs:/usr/src/app/runs -v /mnt/data/git-public/yolov5-mongo-docker/customized:/usr/src/app/customized -v /mnt/data/git-public/yolov5-mongo-docker/workspace:/usr/src/app/workspace
+
+>>>>>>>>> /var/run/docker.sock:/var/run/docker.sock
+************* hasColon=/var/run/docker.sock:/var/run/docker.sock
+****** B-1-a pattern like /data:/containerPath/data --
+mkdir: cannot create directory ‘/var/run/docker.sock’: File exists
+*** ERROR: /var/run/docker.sock: Not existing!
+>>> expanded VOLUME_MAP:  -v /mnt/data/git-public/yolov5-mongo-docker/images:/usr/src/app/images -v /mnt/data/git-public/yolov5-mongo-docker/runs:/usr/src/app/runs -v /mnt/data/git-public/yolov5-mongo-docker/customized:/usr/src/app/customized -v /mnt/data/git-public/yolov5-mongo-docker/workspace:/usr/src/app/workspace -v /var/run/docker.sock:/var/run/docker.sock
+-v /mnt/data/git-public/yolov5-mongo-docker/images:/usr/src/app/images -v /mnt/data/git-public/yolov5-mongo-docker/runs:/usr/src/app/runs -v /mnt/data/git-public/yolov5-mongo-docker/customized:/usr/src/app/customized -v /mnt/data/git-public/yolov5-mongo-docker/workspace:/usr/src/app/workspace -v /var/run/docker.sock:/var/run/docker.sock
+PORT_MAP= -p 8280:8280
+Line=DOCKER_HOST_IP=0.0.0.0
+Line=DOCKER_HOST_NAME=localhost
+Line=USER_ID=1000
+Line=GROUP_ID=1000
+Line=WEIGHTS_DIRECTORY=./weights/
+Line=WEIGHTS_URL=https://github.com/ultralytics/yolov5/releases/download/v4.0/yolov5s.pt
+Line=CONFIDENCE=0.30
+Line=SOURCE_IMAGES=./images
+Line=MY_PROJECT=./runs/detect
+Line=MY_NAME=exp
+Line=CUSTOMIZED_DETECT_BASH=./customized/run-detect.sh
+ENV_VARS= -e HOST_IP=192.168.0.121  -e DOCKER_HOST_IP=0.0.0.0 -e DOCKER_HOST_NAME=localhost -e USER_ID=1000 -e GROUP_ID=1000 -e WEIGHTS_DIRECTORY=./weights/ -e WEIGHTS_URL=https://github.com/ultralytics/yolov5/releases/download/v4.0/yolov5s.pt -e CONFIDENCE=0.30 -e SOURCE_IMAGES=./images -e MY_PROJECT=./runs/detect -e MY_NAME=exp -e CUSTOMIZED_DETECT_BASH=./customized/run-detect.sh
+>> ENV_VARS= -e HOST_IP=192.168.0.121  -e DOCKER_HOST_IP=0.0.0.0 -e DOCKER_HOST_NAME=localhost -e USER_ID=1000 -e GROUP_ID=1000 -e WEIGHTS_DIRECTORY=./weights/ -e WEIGHTS_URL=https://github.com/ultralytics/yolov5/releases/download/v4.0/yolov5s.pt -e CONFIDENCE=0.30 -e SOURCE_IMAGES=./images -e MY_PROJECT=./runs/detect -e MY_NAME=exp -e CUSTOMIZED_DETECT_BASH=./customized/run-detect.sh
+... Setup Docker Run Proxy: ...
+ENV_VARS= -e HOST_IP=192.168.0.121  -e DOCKER_HOST_IP=0.0.0.0 -e DOCKER_HOST_NAME=localhost -e USER_ID=1000 -e GROUP_ID=1000 -e WEIGHTS_DIRECTORY=./weights/ -e WEIGHTS_URL=https://github.com/ultralytics/yolov5/releases/download/v4.0/yolov5s.pt -e CONFIDENCE=0.30 -e SOURCE_IMAGES=./images -e MY_PROJECT=./runs/detect -e MY_NAME=exp -e CUSTOMIZED_DETECT_BASH=./customized/run-detect.sh 
+Ubuntu ... not SE-Lunix ... no privileged needed
+
+HOST_IP=192.168.0.121 -e DOCKER_HOST_IP=0.0.0.0 -e DOCKER_HOST_NAME=localhost -e USER_ID=1000 -e GROUP_ID=1000 -e WEIGHTS_DIRECTORY=./weights/ -e WEIGHTS_URL=https://github.com/ultralytics/yolov5/releases/download/v4.0/yolov5s.pt -e CONFIDENCE=0.30 -e SOURCE_IMAGES=./images -e MY_PROJECT=./runs/detect -e MY_NAME=exp -e CUSTOMIZED_DETECT_BASH=./customized/run-detect.sh
+---------------------------------------------
+---- Starting a Container for openkbs/yolov5-mongo-docker
+---------------------------------------------
+--------------------------------------------------------
+==> Commands to manage Container:
+--------------------------------------------------------
+  ./shell.sh : to shell into the container
+  ./stop.sh  : to stop the container
+  ./log.sh   : to show the docker run log
+  ./build.sh : to build the container
+  ./commit.sh: to push the container image to docker hub
+--------------------------------------------------------
+CERTIFICATE_OPTIONS= -v /mnt/data/git-public/yolov5-mongo-docker/certificates:/certificates
++ set -e
++ env
++ sort
+CONFIDENCE=0.30
+CUSTOMIZED_DETECT_BASH=./customized/run-detect.sh
+DOCKER_HOST_IP=0.0.0.0
+DOCKER_HOST_NAME=localhost
+GPG_KEY=E3FF2839C048B25C084DEBE9B26995E310250568
+GROUP_ID=1000
+HOME=/usr/src/app
+HOSTNAME=318d8e58a926
+HOST_IP=192.168.0.121
+INSTALL_DIR=/usr/src
+LANG=C.UTF-8
+MY_NAME=exp
+MY_PROJECT=./runs/detect
+NVIDIA_VISIBLE_DEVICES=all
+PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+PWD=/usr/src/app
+PYTHON_GET_PIP_SHA256=fa6f3fb93cce234cd4e8dd2beb54a51ab9c247653b52855a48dd44e6b21ff28b
+PYTHON_GET_PIP_URL=https://github.com/pypa/get-pip/raw/c20b0cfd643cd4a19246ccf204e2997af70f6b21/public/get-pip.py
+PYTHON_PIP_VERSION=21.2.4
+PYTHON_SETUPTOOLS_VERSION=57.5.0
+PYTHON_VERSION=3.8.12
+SCRIPT_DIR=/usr/src/scripts
+SHLVL=0
+SOURCE_IMAGES=./images
+TERM=xterm
+USER_ID=1000
+WEIGHTS_DIRECTORY=./weights/
+WEIGHTS_URL=https://github.com/ultralytics/yolov5/releases/download/v4.0/yolov5s.pt
+_=/usr/bin/env
++ echo 'Inputs: ./run-detect.sh'
+Inputs: ./run-detect.sh
++ set -v
+if [ $# -gt 0 ]; then
+
+    #### 1.) Setup needed stuffs, e.g., init db etc. ....
+    #### (do something here for preparation)
+    exec "$@"
+
+else
+    /bin/bash
+fi
++ '[' 1 -gt 0 ']'
++ exec ./run-detect.sh
+------------------------------------------------
+---- 1. CUSTIMIZED: SCRIPTS: DETECT: setup: ----
+------------------------------------------------
+... NOT FOUND: './customized/run-detect.sh' script found -- USE Demo script: './run-detect.sh' ...
+-------------------------------------------
+---- 2. INPUT: WEIGHTS: FOLDER: setup: ----
+-------------------------------------------
+>>>> DEMO: using https://github.com/ultralytics/yolov5/releases/download/v4.0/yolov5s.pt Weights (trained model) ....
+>>>> FOUND: Yolo pre-trained Model weights-and-bias: ./weights/yolov5s.pt
+INPUT: WEIGHTS: FOLDER: ./weights/yolov5s.pt
+--------------------------------------
+---- 3. INPUT: CONFIDENCE: setup: ----
+--------------------------------------
+INPUT: OUPUT: CONFIDENCE: 0.30
+------------------------------------------
+---- 4. INPUT: IMAGES: FOLDER: setup: ----
+------------------------------------------
+>>>> INPUT: IMAGES: FOLDER: ./images
+.... INPUT: IMAGES: CHECK: Any files in it? ....
+.... INPUT: IMAGES: FOUND: ./images: Not empty: OK to use.
+INPUT: IMAGES: FOLDER:: ./images
+----------------------------------------
+---- 5. OUTPUT: RUN: FOLDER: setup: ----
+----------------------------------------
+OUTPUT: RUN: FOLDER: ./runs/detect/exp
+----------------------------------------
+---- 6. DETECT: IMAGES: RUN: setup: ----
+----------------------------------------
++ python detect.py --source ./images --weights ./weights/yolov5s.pt --conf-thres 0.30 --save-txt --save-conf
+Namespace(agnostic_nms=False, augment=False, classes=None, conf_thres=0.3, device='', exist_ok=False, img_size=640, iou_thres=0.45, name='exp', nosave=False, project='runs/detect', save_conf=True, save_txt=True, source='./images', update=False, view_img=False, weights=['./weights/yolov5s.pt'])
+YOLOv5 🚀 v1.0.4-1-g4bcea26 torch 1.9.0+cu111 CUDA:0 (NVIDIA GeForce RTX 3090, 24234.625MB)
+
+.... FOUND: WEIGHTS: MODEL: EXIST: LOCAL: ./weights/yolov5s.pt
+Fusing layers... 
+/usr/local/lib/python3.8/site-packages/torch/nn/functional.py:718: UserWarning: Named tensors and all their associated APIs are an experimental feature and subject to change. Please do not use them for anything important until they are released as stable. (Triggered internally at  /pytorch/c10/core/TensorImpl.h:1156.)
+  return torch.max_pool2d(input, kernel_size, stride, padding, dilation, ceil_mode)
+Model Summary: 224 layers, 7266973 parameters, 0 gradients, 17.0 GFLOPS
+image 1/2 /usr/src/app/images/bus.jpg: 640x480 4 persons, 1 bus, Done. (0.010s)
+image 2/2 /usr/src/app/images/zidane.jpg: 384x640 2 persons, 1 tie, Done. (0.010s)
+Results saved to runs/detect/exp5
+2 labels saved to runs/detect/exp5/labels
+Done. (0.069s)
