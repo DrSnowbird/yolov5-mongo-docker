@@ -79,9 +79,16 @@ if [ "$1" = "-d" ]; then
 fi
 RUN_TYPE=${RUN_TYPE:-0}
 
+## ------------------------------------------------------------------------
+## -- Container 'hostname' use: 
+## -- Default= 2 (use HOST_IP)
+## -- 1: HOST_IP
+## -- 2: HOST_NAME
+## ------------------------------------------------------------------------
+HOST_USE_IP_OR_NAME=${HOST_USE_IP_OR_NAME:-2}
 
 ########################################
-#### ---- NVIDIA  Checking ---- ####
+#### ---- NVIDIA GPU Checking: ---- ####
 ########################################
 ## ------------------------------------------------------------------------
 ## Run with GPU or not
@@ -151,8 +158,8 @@ MORE_OPTIONS=""
 ##   Add any additional options here
 ## ------------------------------------------------------------------------
 #MEDIA_OPTIONS=" --device /dev/snd --device /dev/dri  --device /dev/video0  --group-add audio  --group-add video "
-MEDIA_OPTIONS=" --device /dev/snd --device /dev/dri  --group-add audio  --group-add video "
-#MEDIA_OPTIONS=
+#MEDIA_OPTIONS=" --group-add audio  --group-add video --device /dev/snd --device /dev/dri  "
+MEDIA_OPTIONS=
 
 ###############################################################################
 ###############################################################################
@@ -239,25 +246,33 @@ baseDataFolder="$HOME/data-docker"
 SED_MAC_FIX="''"
 CP_OPTION="--backup=numbered"
 HOST_IP=127.0.0.1
+HOST_NAME=localhost
 function get_HOST_IP() {
     if [[ "$OSTYPE" == "linux-gnu" ]]; then
         # Linux ...
-        HOST_IP=`ip route get 1|grep via | awk '{print $7}' `
+        HOST_NAME=`hostname -f`
+        HOST_IP=`ip route get 1|grep via | awk '{print $7}'`
         SED_MAC_FIX=
-    elif [[ $OSTYPE == darwin* ]]; then
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
         # Mac OSX
+        HOST_NAME=`hostname -f`
         HOST_IP=`ifconfig | grep "inet " | grep -Fv 127.0.0.1 | grep -Fv 192.168 | awk '{print $2}'`
         CP_OPTION=
+    else
+        HOST_NAME=`hostname -f`
+        echo "**** Unknown/unsupported HOST OS type: $OSTYPE"
+        echo ">>>> Use defaults: HOST_IP=$HOST_IP ; HOST_NAME=$HOST_NAME"
     fi
-    echo "HOST_IP=${HOST_IP}"
+    echo ">>> HOST_IP=${HOST_IP}"
+    echo ">>> HOST_NAME=${HOST_NAME}"
 }
 get_HOST_IP
-MY_IP=${HOST_IP}
+HOST_IP=${HOST_IP:-127.0.0.1}
+HOST_NAME=${HOST_NAME:-localhost}
 
 ###################################################
 #### **** Container package information ****
 ###################################################
-#MY_IP=`hostname -I|awk '{print $1}'`
 DOCKER_IMAGE_REPO=`echo $(basename $PWD)|tr '[:upper:]' '[:lower:]'|tr "/: " "_" `
 imageTag="${ORGANIZATION}/${DOCKER_IMAGE_REPO}"
 #PACKAGE=`echo ${imageTag##*/}|tr "/\-: " "_"`
@@ -624,14 +639,17 @@ function cleanup() {
     fi
 }
 
+###################################################
+#### ---- Display Host (Container) URL with Port ----
+###################################################
 function displayURL() {
     port=${1}
-    echo "... Go to: http://${MY_IP}:${port}"
-    #firefox http://${MY_IP}:${port} &
+    echo "... Go to: http://${HOST_IP}:${port}"
+    #firefox http://${HOST_IP}:${port} &
     if [ "`which google-chrome`" != "" ]; then
-        /usr/bin/google-chrome http://${MY_IP}:${port} &
+        /usr/bin/google-chrome http://${HOST_IP}:${port} &
     else
-        firefox http://${MY_IP}:${port} &
+        firefox http://${HOST_IP}:${port} &
     fi
 }
 
@@ -711,7 +729,27 @@ echo "  ./commit.sh: to push the container image to docker hub"
 echo "--------------------------------------------------------"
 
 #################################
-## ---- Setup X11 Display -_-- ##
+## ---- Detect Media/Sound: -- ##
+#################################
+MEDIA_OPTIONS=""
+function detectMedia() {
+    devices="/dev/snd /dev/dri"
+    for device in $devices; do
+        if [ -s $device ]; then
+            # --device /dev/snd:/dev/snd
+            if [ "${MEDIA_OPTIONS}" == "" ]; then
+                MEDIA_OPTIONS=" --group-add audio --group-add video "
+            fi
+            # MEDIA_OPTIONS=" --group-add audio  --group-add video --device /dev/snd --device /dev/dri  "
+            MEDIA_OPTIONS="${MEDIA_OPTIONS} --device $device:$device"
+        fi
+    done
+    echo "MEDIA_OPTIONS= ${MEDIA_OPTION}"
+}
+detectMedia
+
+#################################
+## -_-- Setup X11 Display -_-- ##
 #################################
 X11_OPTION=
 function setupDisplayType() {
@@ -722,8 +760,8 @@ function setupDisplayType() {
         echo ${DISPLAY}
     elif [[ "$OSTYPE" == "darwin"* ]]; then
         # Mac OSX
-        # if you want to multi-media, you need customize it here
-        MEDIA_OPTIONS=
+        # if you want to multi-media in MacOS, you need customize it here
+        MEDIA_OPTIONS=""
         xhost + 127.0.0.1
         export DISPLAY=host.docker.internal:0
         echo ${DISPLAY}
@@ -772,8 +810,12 @@ setupCorporateCertificates
 #  => this might open up more attack surface since
 #   /etc/hosts has other nodes IP/name information
 # ------------------------------------------------
-HOSTS_OPTIONS="-v /etc/hosts:/etc/hosts"
-
+if [ ${HOST_USE_IP_OR_NAME} -eq 2 ]; then
+    HOSTS_OPTIONS="-h ${HOST_NAME} -v /etc/hosts:/etc/hosts "
+else
+    # default use HOST_IP
+    HOSTS_OPTIONS="-h ${HOST_IP} -v /etc/hosts:/etc/hosts "
+fi
 
 ##################################################
 ##################################################
@@ -805,15 +847,17 @@ case "${BUILD_TYPE}" in
         setupDisplayType
         echo ${DISPLAY}
         #X11_OPTION="-e DISPLAY=$DISPLAY -v $HOME/.chrome:/data -v /dev/shm:/dev/shm -v /tmp/.X11-unix:/tmp/.X11-unix -e DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket"
-        X11_OPTION="-e DISPLAY=$DISPLAY -v /dev/shm:/dev/shm -v /tmp/.X11-unix:/tmp/.X11-unix -e DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket"
+        #X11_OPTION="-e DISPLAY=$DISPLAY -v /dev/shm:/dev/shm -v /tmp/.X11-unix:/tmp/.X11-unix -e DBUS_SYSTEM_BUS_ADDRESS=unix:path=/var/run/dbus/system_bus_socket"
+        X11_OPTION="-e DISPLAY=$DISPLAY -v /dev/shm:/dev/shm -v /tmp/.X11-unix:/tmp/.X11-unix"
         echo "X11_OPTION=${X11_OPTION}"
         MORE_OPTIONS="${MORE_OPTIONS} ${HOSTS_OPTIONS} "
         sudo docker run \
             --name=${instanceName} \
             --restart=${RESTART_OPTION} \
             ${GPU_OPTION} \
+            ${MEDIA_OPTIONS} \
             ${REMOVE_OPTION} ${RUN_OPTION} ${MORE_OPTIONS} ${CERTIFICATE_OPTIONS} \
-            ${X11_OPTION} ${MEDIA_OPTIONS} \
+            ${X11_OPTION} \
             ${privilegedString} \
             ${USER_VARS} \
             ${ENV_VARS} \
@@ -843,7 +887,7 @@ case "${BUILD_TYPE}" in
             ${VOLUME_MAP} \
             ${PORT_MAP} \
             ${imageTag} \
-            "$@"
+            $@
         ;;
 
 esac

@@ -1,6 +1,6 @@
 # Start FROM Nvidia PyTorch image https://ngc.nvidia.com/catalog/containers/nvidia:pytorch
 #FROM nvcr.io/nvidia/pytorch:21.03-py3
-FROM python:3.8.8
+FROM python:3.8
 
 MAINTAINER DrSnowbird "DrSnowbird@openkbs.org"
 

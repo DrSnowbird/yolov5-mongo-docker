@@ -18,29 +18,27 @@ services:
       - DOCKER_HOST_IP=${DOCKER_HOST_IP:-127.0.0.1}
       - DOCKER_HOST_NAME=${DOCKER_HOST_NAME:-localhost}
       # ==== X11 Use only ====
-      - DISPLAY=$DISPLAY
-      - DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
+      #- DISPLAY=$DISPLAY
+      #- DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
       # ==== vnc/no-vnc ====
       #- WINDOW_MANAGER=xfce 
       #- VNC_RESOLUTION=1280x800 
       #- VNC_PW=vncpassword 
     volumes:
-      ## ==== Common mapping ====
+      ## ==== Common Container mapping: ====
       - /etc/hosts:/etc/hosts
-      # - /dev/shm:/dev/shm 
+      # - /dev/shm:/dev/shm
       - /var/run/docker.sock:/var/run/docker.sock
-      # - /tmp/.X11-unix:/tmp/.X11-unix
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      ## ==== Corporate Proxies Gateway Relay: ====
       #- ./certificates:/home/developer/certificates
-      ## ==== Use $HOME/data-docker as base directory: ====
-      #- $HOME/data-docker/yolov5-mongo-docker/data:/home/developer/data
-      #- $HOME/data-docker/yolov5-mongo-docker/workspace:/home/developer/workspace
-      ## ==== Use current directory as root for mapping Volumes ====
-      ## (You need to manually create those child directory: ./data, ./workspace, and others)
-      # - ./data:/home/developer/data
+      ## ==== Use $HOME/data-docker as bUser's base directory: ====
+      #- $HOME/data-docker/tensorflow-python3-jupyter/data:/home/developer/data
+      #- $HOME/data-docker/tensorflow-python3-jupyter/workspace:/home/developer/workspace
+      ## ==== Use current directory as User's base directory: ====
       - ./workspace:/home/developer/workspace
     links:
       - mongo
-
 
   yolov5-fileserver:
     image: openkbs/jetty-fileserver

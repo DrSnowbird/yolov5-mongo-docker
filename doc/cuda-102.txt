@@ -1,0 +1,986 @@
+user1@user1-desktop:/mnt/seagate-3tb/git-public/yolov5-mongo-docker$ ./run.sh
+--------------------------------------------------------
+Usage: 
+  ./run.sh <container_shell_command>
+e.g.: 
+  ./run.sh ls -al 
+  ./run.sh /bin/bash 
+--------------------------------------------------------
+-c (IS_TO_RUN_CPU): 0
+-g (IS_TO_RUN_GPU): 1
+remiaing args:
+
+/usr/bin/nvidia-smi
+>>>> Found Nvidia GPU: Use all GPU(s)!
+| NVIDIA-SMI 460.91.03    Driver Version: 460.91.03    CUDA Version: 11.2     |
+GPU_OPTION=  --gpus all 
+
+RUN_TYPE=0
+RUN_OPTION= -it 
+RESTART_OPTION=no
+REMOVE_OPTION= --rm 
+>>> HOST_IP=192.168.0.127
+>>> HOST_NAME=user1-desktop
+*** WARNING: Docker Run Environment file './docker-run.env' NOT found!
+*** WARNING: Searching for .env or docker.env as alternative!
+*** --->
+--- INFO: ./.env FOUND to use as Docker Run Environment file!
+
+>>>>>>>>> ./images:/usr/src/app/images
+************* hasColon=./images:/usr/src/app/images
+******* A-1 -- pattern like ./data:/data --
+total 660
+drwxrwxr-x  3 user1 user1   4096 May  4 21:16 .
+drwxrwxr-x 16 user1 user1   4096 Sep  9 23:53 ..
+-rw-rw-r--  1 user1 user1 487438 Apr  1 12:00 bus.jpg
+drwxrwxr-x  3 user1 user1   4096 May  1 23:27 sub-folder
+-rw-rw-r--  1 user1 user1 168949 Apr  1 12:00 zidane.jpg
+>>> expanded VOLUME_MAP:  -v /mnt/seagate-3tb/git-public/yolov5-mongo-docker/images:/usr/src/app/images
+
+>>>>>>>>> ./runs:/usr/src/app/runs
+************* hasColon=./runs:/usr/src/app/runs
+******* A-1 -- pattern like ./data:/data --
+total 48
+drwxrwxr-x 11 user1 user1 4096 Sep  9 20:07 .
+drwxrwxr-x 16 user1 user1 4096 Sep  9 23:53 ..
+-rw-rw-r--  1 user1 user1    1 Apr 20 11:30 .dummy.txt
+drwxr-xr-x  5 user1 user1 4096 May  4 21:04 my_scan_2021-05-05-01-04-17
+drwxr-xr-x  3 user1 user1 4096 May  4 21:07 my_scan_2021-05-05-01-07-46
+drwxr-xr-x  3 user1 user1 4096 May  4 21:15 my_scan_2021-05-05-01-14-47
+drwxr-xr-x  4 user1 user1 4096 May  4 21:15 my_scan_2021-05-05-01-15-14
+drwxr-xr-x  5 user1 user1 4096 May  4 21:26 my_scan_2021-05-05-01-25-50
+drwxr-xr-x  3 user1 user1 4096 Aug 28 15:15 my_scan_2021-08-28-19-15-10
+drwxr-xr-x  3 user1 user1 4096 Aug 28 15:19 my_scan_2021-08-28-19-19-12
+drwxr-xr-x  4 user1 user1 4096 Aug 28 15:21 my_scan_2021-08-28-19-21-14
+drwxr-xr-x  4 user1 user1 4096 Sep  9 20:07 my_scan_2021-09-10-00-07-00
+>>> expanded VOLUME_MAP:  -v /mnt/seagate-3tb/git-public/yolov5-mongo-docker/images:/usr/src/app/images -v /mnt/seagate-3tb/git-public/yolov5-mongo-docker/runs:/usr/src/app/runs
+
+>>>>>>>>> ./customized:/usr/src/app/customized
+************* hasColon=./customized:/usr/src/app/customized
+******* A-1 -- pattern like ./data:/data --
+total 14140
+drwxr-xr-x  9 user1 user1     4096 Aug 28 15:21 .
+drwxrwxr-x 16 user1 user1     4096 Sep  9 23:53 ..
+-rw-r--r--  1 user1 user1      312 Apr  4 08:01 all.names
+drwxrwxr-x  2 user1 user1     4096 May  1 11:30 bin
+-rw-r--r--  1 user1 user1     4096 Apr 27 19:18 ._categories_definition.csv
+-rw-r--r--  1 user1 user1      120 Apr 10 09:29 categories_definition.csv
+-rw-r--r--  1 user1 user1     9568 Apr  4 08:01 classes_design.xlsx
+drwxr-xr-x  2 user1 user1     4096 May  1 23:18 doc
+-rw-r--r--  1 user1 user1     4096 Apr 27 19:18 ._Instruction-SAFER-Container-v1.1_2021-04-19.docx
+-rw-r--r--  1 user1 user1  2301194 Apr 19 15:12 Instruction-SAFER-Container-v1.1_2021-04-19.docx
+drwxr-xr-x  3 user1 user1     4096 May  1 14:03 lib
+-rw-r--r--  1 user1 user1      196 Apr 19 15:03 MITRE.license
+-rwxr-xr-x  1 user1 user1     4424 May  4 21:21 my_env.sh
+drwxrwxr-x  2 user1 user1     4096 May  1 13:47 rest
+-rwxr-xr-x  1 user1 user1     8885 May  2 23:40 run-detect.sh
+-rw-r--r--  1 user1 user1     4096 Apr 27 19:18 ._SAFE_classes.csv
+-rw-r--r--  1 user1 user1      748 Apr 10 07:56 SAFE_classes.csv
+-rw-r--r--  1 user1 user1     4096 Apr 27 19:18 ._SAFER-Analytics-Prototype_v0.1.0_2021-04-14.pptx
+-rw-r--r--  1 user1 user1 12022554 Apr 15 11:16 SAFER-Analytics-Prototype_v0.1.0_2021-04-14.pptx
+-rw-r--r--  1 user1 user1     4096 Apr 27 19:18 ._SAFER_Docker_for-DC3_testing.pptx
+-rw-r--r--  1 user1 user1    43421 Apr  4 08:01 SAFER_Docker_for-DC3_testing.pptx
+drwxr-xr-x  3 user1 user1     4096 May  3 13:49 src
+drwxr-xr-x  2 user1 user1     4096 Apr 27 19:18 tests
+drwxr-xr-x  2 user1 user1     4096 Apr 27 19:18 weights
+>>> expanded VOLUME_MAP:  -v /mnt/seagate-3tb/git-public/yolov5-mongo-docker/images:/usr/src/app/images -v /mnt/seagate-3tb/git-public/yolov5-mongo-docker/runs:/usr/src/app/runs -v /mnt/seagate-3tb/git-public/yolov5-mongo-docker/customized:/usr/src/app/customized
+
+>>>>>>>>> ./workspace:/usr/src/app/workspace
+************* hasColon=./workspace:/usr/src/app/workspace
+******* A-1 -- pattern like ./data:/data --
+total 24
+drwxrwxr-x  5 user1 user1 4096 Apr  5 12:11 .
+drwxrwxr-x 16 user1 user1 4096 Sep  9 23:53 ..
+-rw-------  1 user1 user1   69 Apr  5 12:16 .bash_history
+drwxr-xr-x  2 user1 user1 4096 Apr  5 12:10 customized
+drwxr-xr-x  2 user1 user1 4096 Apr  5 12:10 images
+drwxr-xr-x  2 user1 user1 4096 Apr  5 12:10 runs
+>>> expanded VOLUME_MAP:  -v /mnt/seagate-3tb/git-public/yolov5-mongo-docker/images:/usr/src/app/images -v /mnt/seagate-3tb/git-public/yolov5-mongo-docker/runs:/usr/src/app/runs -v /mnt/seagate-3tb/git-public/yolov5-mongo-docker/customized:/usr/src/app/customized -v /mnt/seagate-3tb/git-public/yolov5-mongo-docker/workspace:/usr/src/app/workspace
+
+>>>>>>>>> /var/run/docker.sock:/var/run/docker.sock
+************* hasColon=/var/run/docker.sock:/var/run/docker.sock
+****** B-1-a pattern like /data:/containerPath/data --
+mkdir: cannot create directory ‘/var/run/docker.sock’: File exists
+*** ERROR: /var/run/docker.sock: Not existing!
+>>> expanded VOLUME_MAP:  -v /mnt/seagate-3tb/git-public/yolov5-mongo-docker/images:/usr/src/app/images -v /mnt/seagate-3tb/git-public/yolov5-mongo-docker/runs:/usr/src/app/runs -v /mnt/seagate-3tb/git-public/yolov5-mongo-docker/customized:/usr/src/app/customized -v /mnt/seagate-3tb/git-public/yolov5-mongo-docker/workspace:/usr/src/app/workspace -v /var/run/docker.sock:/var/run/docker.sock
+-v /mnt/seagate-3tb/git-public/yolov5-mongo-docker/images:/usr/src/app/images -v /mnt/seagate-3tb/git-public/yolov5-mongo-docker/runs:/usr/src/app/runs -v /mnt/seagate-3tb/git-public/yolov5-mongo-docker/customized:/usr/src/app/customized -v /mnt/seagate-3tb/git-public/yolov5-mongo-docker/workspace:/usr/src/app/workspace -v /var/run/docker.sock:/var/run/docker.sock
+PORT_MAP= -p 8280:8280
+Line=DOCKER_HOST_IP=0.0.0.0
+Line=DOCKER_HOST_NAME=localhost
+Line=USER_ID=1000
+Line=GROUP_ID=1000
+Line=WEIGHTS_DIRECTORY=./weights/
+Line=WEIGHTS_URL=https://github.com/ultralytics/yolov5/releases/download/v4.0/yolov5s.pt
+Line=CONFIDENCE=0.35
+Line=SOURCE_IMAGES=./images
+Line=MY_PROJECT=./runs/detect
+Line=MY_NAME=exp
+Line=CUSTOMIZED_DETECT_BASH=./customized/run-detect.sh
+ENV_VARS= -e HOST_IP=192.168.0.127  -e DOCKER_HOST_IP=0.0.0.0 -e DOCKER_HOST_NAME=localhost -e USER_ID=1000 -e GROUP_ID=1000 -e WEIGHTS_DIRECTORY=./weights/ -e WEIGHTS_URL=https://github.com/ultralytics/yolov5/releases/download/v4.0/yolov5s.pt -e CONFIDENCE=0.35 -e SOURCE_IMAGES=./images -e MY_PROJECT=./runs/detect -e MY_NAME=exp -e CUSTOMIZED_DETECT_BASH=./customized/run-detect.sh
+>> ENV_VARS= -e HOST_IP=192.168.0.127  -e DOCKER_HOST_IP=0.0.0.0 -e DOCKER_HOST_NAME=localhost -e USER_ID=1000 -e GROUP_ID=1000 -e WEIGHTS_DIRECTORY=./weights/ -e WEIGHTS_URL=https://github.com/ultralytics/yolov5/releases/download/v4.0/yolov5s.pt -e CONFIDENCE=0.35 -e SOURCE_IMAGES=./images -e MY_PROJECT=./runs/detect -e MY_NAME=exp -e CUSTOMIZED_DETECT_BASH=./customized/run-detect.sh
+... Setup Docker Run Proxy: ...
+ENV_VARS= -e HOST_IP=192.168.0.127  -e DOCKER_HOST_IP=0.0.0.0 -e DOCKER_HOST_NAME=localhost -e USER_ID=1000 -e GROUP_ID=1000 -e WEIGHTS_DIRECTORY=./weights/ -e WEIGHTS_URL=https://github.com/ultralytics/yolov5/releases/download/v4.0/yolov5s.pt -e CONFIDENCE=0.35 -e SOURCE_IMAGES=./images -e MY_PROJECT=./runs/detect -e MY_NAME=exp -e CUSTOMIZED_DETECT_BASH=./customized/run-detect.sh 
+Ubuntu ... not SE-Lunix ... no privileged needed
+
+HOST_IP=192.168.0.127 -e DOCKER_HOST_IP=0.0.0.0 -e DOCKER_HOST_NAME=localhost -e USER_ID=1000 -e GROUP_ID=1000 -e WEIGHTS_DIRECTORY=./weights/ -e WEIGHTS_URL=https://github.com/ultralytics/yolov5/releases/download/v4.0/yolov5s.pt -e CONFIDENCE=0.35 -e SOURCE_IMAGES=./images -e MY_PROJECT=./runs/detect -e MY_NAME=exp -e CUSTOMIZED_DETECT_BASH=./customized/run-detect.sh
+---------------------------------------------
+---- Starting a Container for openkbs/yolov5-mongo-docker
+---------------------------------------------
+--------------------------------------------------------
+==> Commands to manage Container:
+--------------------------------------------------------
+  ./shell.sh : to shell into the container
+  ./stop.sh  : to stop the container
+  ./log.sh   : to show the docker run log
+  ./build.sh : to build the container
+  ./commit.sh: to push the container image to docker hub
+--------------------------------------------------------
+MEDIA_OPTIONS= 
+CERTIFICATE_OPTIONS= -v /mnt/seagate-3tb/git-public/yolov5-mongo-docker/certificates:/certificates
++ set -e
++ env
++ sort
+CONFIDENCE=0.35
+CUSTOMIZED_DETECT_BASH=./customized/run-detect.sh
+DOCKER_HOST_IP=0.0.0.0
+DOCKER_HOST_NAME=localhost
+GPG_KEY=E3FF2839C048B25C084DEBE9B26995E310250568
+GROUP_ID=1000
+HOME=/usr/src/app
+HOSTNAME=user1-desktop
+HOST_IP=192.168.0.127
+INSTALL_DIR=/usr/src
+LANG=C.UTF-8
+MY_NAME=exp
+MY_PROJECT=./runs/detect
+NVIDIA_VISIBLE_DEVICES=all
+PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+PWD=/usr/src/app
+PYTHON_GET_PIP_SHA256=fa6f3fb93cce234cd4e8dd2beb54a51ab9c247653b52855a48dd44e6b21ff28b
+PYTHON_GET_PIP_URL=https://github.com/pypa/get-pip/raw/c20b0cfd643cd4a19246ccf204e2997af70f6b21/public/get-pip.py
+PYTHON_PIP_VERSION=21.2.4
+PYTHON_VERSION=3.8.11
+SCRIPT_DIR=/usr/src/scripts
+SHLVL=0
+SOURCE_IMAGES=./images
+TERM=xterm
+USER_ID=1000
+WEIGHTS_DIRECTORY=./weights/
+WEIGHTS_URL=https://github.com/ultralytics/yolov5/releases/download/v4.0/yolov5s.pt
+_=/usr/bin/env
++ echo 'Inputs: ./run-detect.sh'
+Inputs: ./run-detect.sh
++ set -v
+if [ $# -gt 0 ]; then
+
+    #### 1.) Setup needed stuffs, e.g., init db etc. ....
+    #### (do something here for preparation)
+    exec "$@"
+
+else
+    /bin/bash
+fi
++ '[' 1 -gt 0 ']'
++ exec ./run-detect.sh
+------------------------------------------------
+---- 1. CUSTIMIZED: SCRIPTS: DETECT: setup: ----
+------------------------------------------------
+Found customized run-detect.sh found, use it instead of this...
+-a (IS_TO_RUN_ANALYTICS)  : 1
+-d (IS_TO_RUN_DETECT)     : 1
+-s (IS_TO_RUN_REST_SERVER): 0
+remiaing args:
+
+====> DETECT: PYTHON: WHICH-to-USE: customized/run-detect.sh: MY_DETECT_PYTHON= ClassesDetect.py
+>>>> HOST_IP: 192.168.0.127
+>>>> Current Working Directory: /usr/src/app 
+
+------------------------------------------------
+---- 1. CUSTIMIZED: SCRIPTS: DETECT: setup: ----
+------------------------------------------------
+---------------------------------------------------------------------
+... Found ./my_env.sh file ... Use it to initialize Shell Variables:
+#!/bin/bash
+
+# NOTICE
+# This software was produced for the U.S. Government under contract FA8702-21-C-0001,
+# and is subject to the Rights in Data-General Clause 52.227-14, Alt. IV (DEC 2007)
+# ©2021 The MITRE Corporation. All Rights Reserved.
+
+##########################################
+#### ---- Yolo setup ---- ####
+##########################################
+
+#### ---- Whether to run 'ClassesDetect.py': ---- ####
+#IS_TO_RUN_DETECT=1
+
+#### ---- Whether to run 'analytics_processing.py': ---- ####
+#IS_TO_RUN_ANALYTICS=1
+
+#### ---- Whether to run 'REST_server.py': ---- ####
+#IS_TO_RUN_REST_SERVER=0
+
+#### ---- default CONFIDENCE: ---- ####
+#### ---- experiments showing 0.25 ~ 0.35 having the best reults
+CONFIDENCE=0.5
+
+#### ---- default WEIGHTS folder: ---- ####
+WEIGHTS=customized/weights/SAFER_v5_run_035.pt
+WEIGHTS_DIRECTORY=customized/weights/
+
+#### ---- Change output directions <MY_PROJECT>/<MY_NAME> ---- ####
+MY_PROJECT=runs
+MY_NAME=my_scan
+
+#### ---- default IMAGES folder: ---- ####
+# SOURCE_IMAGES=customized/images
+#### ---- default IMAGES folder: ---- ####
+#### (this is the Docker's internal relative folder as /usr/src/app/images - not the Host's directory!)
+#### (Usually, you don't want to change this and just leave as it is!)
+SOURCE_IMAGES=./images
+
+## -- 0: Do NOT recursive scan all the levels of all the children directories
+## --    Output directories will be 'flat' in one directory as input images from one flat directory.
+## -- 1: Do 'recursive' scan all the levels of all the children directories.
+## --    Output directories will be recursive / hierarchical for value ==1
+SOURCE_IMAGES_RECURSIVE_SCAN=1
+#### ----------------------------------------------------------------------------------------------
+#### ---- SOURCE_IMAGES_MICRO_BATCH=0: micro-batch mode (one call per source image directory
+#### ---- minimize the memory usage for very large recursive sub-directories scanning for detection.
+#### ----------------------------------------------------------------------------------------------
+#### ----------------------------------------------------------------------------------------------
+#### ---- SOURCE_IMAGES_MICRO_BATCH=1: One-Large-batch mode (one call for ALL recursive source images directories
+#### ---- Use larger memory usage for very large recursive sub-directories scanning for detection.
+#### ----------------------------------------------------------------------------------------------
+SOURCE_IMAGES_MICRO_BATCH=0
+
+MY_NAME_USE_TIMESTAMP=1
+# -- Existing OK (=1): to overwrite (not creating new name) -- ##
+# -- Existing NO (=0): to creating new name_<timestamp>, e.g., exp_2021-04-02-11-23-14 -- ##
+MY_EXIST_OK_FLAG=1
+MY_CLEAN_OLD=0
+
+#############################################
+#### ---- Analytics post-Yolo setup ---- ####
+#############################################
+## -- Window Span of Frames to gauage the offensiveness (1, 2, 3)
+ANALYTICS_VIDEO_FRAME_WINDOW=4
+
+ANALYTICS_SOURCE_FORMAT=mpg4 jpg png
+
+## -- Default only create the Summary of aggregating all *.txt (video or image)
+## -- When Video:
+## -- 0 (default): Total Summary: Sum(Frames[i, Sum(Features[N, M])
+## -- 1 : Details of Frames: Details(Frames[i, Sum(Features[N, M])) for each Frame.
+##    where
+##          i: 1..Max_Frames,
+##          N: features indicators  (rows), M: features set (columns)
+## -- All other values to default as '1' (Total Summary):
+ANALYTICS_VIDEO_REPORT_ALL_FRAMES=0
+
+## -- Whether to print Features of each Frame or not
+## -- 0 (default): Not to print Features of each Frame
+## -- 1: Print Feature of each Frame
+ANALYTICS_VIDEO_REPORT_WITH_FEATURES=1
+
+## -- Whether to print Boxes of each Frame or not
+## -- 0 (default): Not to print Boxes of each Frame
+## -- 1: Print Boxes of each Frame
+ANALYTICS_VIDEO_REPORT_WITH_BOXES=0
+
+## -- Pandas dataframe choices: records, values
+ANALYTICS_REPORT_BOXES_ORIENTATION=values
+
+#################################
+#### ---- Mongodb setup ---- ####
+#################################
+## -- Default not to write to MongoDB -- ##
+USE_MONGO_SERVER=1
+## -- Mongo connection setup: -- ##
+MONGO_USER='mongoadmin'
+MONGO_PASSWORD='mongoadmin'
+MONGO_AUTHSOURCE='admin'
+MONGO_DATABASE='yolov5_database'
+## -- Default to use Local MongoDB Server: -- ##
+#MONGO_HOST='0.0.0.0'
+## -- Modify ip to point to remote Mongo Server: -- ##
+MONGO_HOST='0.0.0.0'
+MONGO_PORT=27017
+## -- SAFE_mongodb collection: == ##
+SAFE_MONGODB_COLLECTION='SAFE_scanned'
+---------------------------------------------------------------------
+./customized/my_env.sh: line 67: jpg: command not found
+---------------------------------------------------------------------
+CONFIDENCE=0.5
+CUSTOMIZED_DETECT_BASH=./customized/run-detect.sh
+DOCKER_HOST_IP=0.0.0.0
+DOCKER_HOST_NAME=localhost
+GPG_KEY=E3FF2839C048B25C084DEBE9B26995E310250568
+GROUP_ID=1000
+HOME=/usr/src/app
+HOSTNAME=user1-desktop
+HOST_IP=192.168.0.127
+INSTALL_DIR=/usr/src
+LANG=C.UTF-8
+MY_NAME=my_scan
+MY_PROJECT=runs
+NVIDIA_VISIBLE_DEVICES=all
+OLDPWD=/usr/src/app
+PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+PWD=/usr/src/app
+PYTHON_GET_PIP_SHA256=fa6f3fb93cce234cd4e8dd2beb54a51ab9c247653b52855a48dd44e6b21ff28b
+PYTHON_GET_PIP_URL=https://github.com/pypa/get-pip/raw/c20b0cfd643cd4a19246ccf204e2997af70f6b21/public/get-pip.py
+PYTHON_PIP_VERSION=21.2.4
+PYTHON_VERSION=3.8.11
+SCRIPT_DIR=/usr/src/scripts
+SHLVL=1
+SOURCE_IMAGES=./images
+TERM=xterm
+USER_ID=1000
+WEIGHTS_DIRECTORY=customized/weights/
+WEIGHTS_URL=https://github.com/ultralytics/yolov5/releases/download/v4.0/yolov5s.pt
+_=/usr/bin/env
+-------------------------------------------
+---- 2. INPUT: WEIGHTS: FOLDER: setup: ----
+-------------------------------------------
+INPUT: WEIGHTS: FOLDER: customized/weights/SAFER_v5_run_035.pt
+--------------------------------------
+---- 3. INPUT: CONFIDENCE: setup: ----
+--------------------------------------
+INPUT: OUPUT: CONFIDENCE: 0.5
+------------------------------------------
+---- 4. INPUT: IMAGES: FOLDER: setup: ----
+------------------------------------------
+>>>> FOUND: ./images to use
+INPUT: IMAGES: FOLDER:: ./images
+----------------------------------------
+---- 5. OUTPUT: RUN: FOLDER: setup: ----
+----------------------------------------
+Current Time : 2021-09-10-04-21-46
+>> EXIST_OK_FLAG=1 : OK to overwrite existing run/detect/exp folder
+------------------------------------------
+---- 6. MongoDB: MONGO_HOST: set IP : ----
+------------------------------------------
+>>>> MONGO_HOST=192.168.0.127
+----------------------------------------
+---- 7. DETECT: IMAGES: RUN: setup: ----
+----------------------------------------
+>>>> cwd=/usr/src/app
+proj_dir=/usr/src/app
+>>>> Reset cwd (proj_dir) = /usr/src/app
+>>>> ----> sys.path= ['/usr/src/app/lib', '/usr/src/app', '/usr/local/lib/python38.zip', '/usr/local/lib/python3.8', '/usr/local/lib/python3.8/lib-dynload', '/usr/local/lib/python3.8/site-packages']
+{
+    "CONFIDENCE": "0.5",
+    "WEIGHTS": "customized/weights/SAFER_v5_run_035.pt",
+    "WEIGHTS_DIRECTORY": "customized/weights/",
+    "MY_PROJECT": "runs",
+    "MY_NAME": "my_scan",
+    "SOURCE_IMAGES": "./images",
+    "SOURCE_IMAGES_RECURSIVE_SCAN": "1",
+    "SOURCE_IMAGES_MICRO_BATCH": "0",
+    "MY_NAME_USE_TIMESTAMP": "1",
+    "MY_EXIST_OK_FLAG": "1",
+    "MY_CLEAN_OLD": "0",
+    "ANALYTICS_VIDEO_FRAME_WINDOW": "4",
+    "ANALYTICS_SOURCE_FORMAT": "mpg4 jpg png",
+    "ANALYTICS_VIDEO_REPORT_ALL_FRAMES": "0",
+    "ANALYTICS_VIDEO_REPORT_WITH_FEATURES": "1",
+    "ANALYTICS_VIDEO_REPORT_WITH_BOXES": "0",
+    "ANALYTICS_REPORT_BOXES_ORIENTATION": "values",
+    "USE_MONGO_SERVER": "1",
+    "MONGO_USER": "mongoadmin",
+    "MONGO_PASSWORD": "mongoadmin",
+    "MONGO_AUTHSOURCE": "admin",
+    "MONGO_DATABASE": "yolov5_database",
+    "MONGO_HOST": "0.0.0.0",
+    "MONGO_PORT": "27017",
+    "SAFE_MONGODB_COLLECTION": "SAFE_scanned"
+}
+>>>> SOURCE_IMAGES= ./images
+weights file: customized/weights/SAFER_v5_run_035.pt
+INFO:root:>>>>>>> detect(source=./images
+INFO:root:>>>>>>> detect(weights=customized/weights/SAFER_v5_run_035.pt
+INFO:root:>>>>>>> detect(save_img=True, recursive=True)
+INFO:root:>>>> detect.py: SOURCE_IMAGES_MICRO_BATCH=False
+INFO:utils.torch_utils:YOLOv5 🚀 v1.0.4-0-g617c008 torch 1.9.0+cu102 CUDA:0 (GeForce GT 1030, 1993.25MB)
+
+.... FOUND: WEIGHTS: MODEL: EXIST: LOCAL: customized/weights/SAFER_v5_run_035.pt
+Fusing layers... 
+/usr/local/lib/python3.8/site-packages/torch/nn/functional.py:718: UserWarning: Named tensors and all their associated APIs are an experimental feature and subject to change. Please do not use them for anything important until they are released as stable. (Triggered internally at  /pytorch/c10/core/TensorImpl.h:1156.)
+  return torch.max_pool2d(input, kernel_size, stride, padding, dilation, ceil_mode)
+INFO:utils.torch_utils:Model Summary: 476 layers, 87346732 parameters, 0 gradients, 217.6 GFLOPS
+INFO:root:>>>>>>>> LoadImages(): image_dir path: 
+ /usr/src/app/images
+image 1/4 /usr/src/app/images/bus.jpg: 640x480 2 logos, 2 adult_males, Done. (0.300s)
+image 2/4 /usr/src/app/images/sub-folder/bus.jpg: 640x480 2 logos, 2 adult_males, Done. (0.299s)
+image 3/4 /usr/src/app/images/sub-folder/sub-sub-folder/bus.jpg: 640x480 2 logos, 2 adult_males, Done. (0.298s)
+image 4/4 /usr/src/app/images/zidane.jpg: 384x640 1 logo, 1 difficult_male, 2 adult_males, Done. (0.253s)
+Results saved to runs/my_scan_2021-09-10-04-21-46
+2 labels saved to runs/my_scan_2021-09-10-04-21-46/labels
+Done. (1.344s)
+------------------------------------------
+---- 8. ANALYSIS: IMAGES: RUN: LABEL: ----
+------------------------------------------
+>>>> cwd=/usr/src/app
+proj_dir=/usr/src/app
+>>>> Reset cwd (proj_dir) = /usr/src/app
+>>>> ----> sys.path= ['/usr/src/app/lib', '/usr/src/app', '/usr/local/lib/python38.zip', '/usr/local/lib/python3.8', '/usr/local/lib/python3.8/lib-dynload', '/usr/local/lib/python3.8/site-packages']
+>>>> cwd= /usr/src/app
+INFO:root:>>>> FOUND: SOURCE_IMAGES variable From OS Environment: ./images
+2021-09-10-04-21-57
+Namespace(analysis_summary_csv='customized/SAFE_classes.csv', classes_map_csv='./customized/SAFE_classes.csv', outputs_directory='runs/my_scan_2021-09-10-04-21-46', source_images='./images')
+INFO:root:>>>> DEFINITION: classes_map_csv: ./customized/SAFE_classes.csv
+/usr
+INFO:root:>>>> INPUT : DIRECTORY: source_images: ./images
+INFO:root:>>>> OUTPUT: DIRECTORY: outputs_directory: runs/my_scan_2021-09-10-04-21-46
+INFO:root:>>>> OUTPUT: DIRECTORY: labels_directory: runs/my_scan_2021-09-10-04-21-46/labels
+.... load Classes-to-Feature Definition Map file:  ./customized/SAFE_classes.csv
+    class_index                   class_label  breast  sexual  female  ...  adult  difficult  piercing  face  handcuff
+0             0               female_genitals     0.0     1.0     0.0  ...    0.0        0.0       0.0   0.0       0.0
+1             1                        breast     1.0     1.0     0.0  ...    0.0        0.0       0.0   0.0       0.0
+2             2                 male_genitals     0.0     1.0     0.0  ...    0.0        0.0       0.0   0.0       0.0
+3             3                   intercourse     0.0     1.0     0.0  ...    0.0        0.0       0.0   0.0       0.0
+4             4  female_genitals_presentation     0.0     1.0     0.0  ...    0.0        0.0       0.0   0.0       0.0
+5             5                          logo     0.0     0.0     0.0  ...    0.0        0.0       0.0   0.0       0.0
+6             6                          anus     0.0     1.0     0.0  ...    0.0        0.0       0.0   0.0       0.0
+7             7                     ejaculate     0.0     1.0     0.0  ...    0.0        0.0       0.0   0.0       0.0
+8             8                      piercing     0.0     0.0     0.0  ...    0.0        0.0       1.0   0.0       0.0
+9             9                         dildo     0.0     1.0     0.0  ...    0.0        0.0       0.0   0.0       0.0
+10           10                    hand_cuffs     0.0     0.0     0.0  ...    0.0        0.0       0.0   0.0       1.0
+11           11                      oral_sex     0.0     1.0     0.0  ...    0.0        0.0       0.0   0.0       0.0
+12           12            finger_penetration     0.0     1.0     0.0  ...    0.0        0.0       0.0   0.0       0.0
+13           13                     baby_male     0.0     0.0     0.0  ...    0.0        0.0       0.0   1.0       0.0
+14           14                  toddler_male     0.0     0.0     0.0  ...    0.0        0.0       0.0   1.0       0.0
+15           15               school_age_male     0.0     0.0     0.0  ...    0.0        0.0       0.0   1.0       0.0
+16           16                difficult_male     0.0     0.0     0.0  ...    0.0        1.0       0.0   1.0       0.0
+17           17                    adult_male     0.0     0.0     0.0  ...    1.0        0.0       0.0   1.0       0.0
+18           18                   baby_female     0.0     0.0     1.0  ...    0.0        0.0       0.0   1.0       0.0
+19           19                toddler_female     0.0     0.0     1.0  ...    0.0        0.0       0.0   1.0       0.0
+20           20             school_age_female     0.0     0.0     1.0  ...    0.0        0.0       0.0   1.0       0.0
+21           21              difficult_female     0.0     0.0     1.0  ...    0.0        1.0       0.0   1.0       0.0
+22           22                  adult_female     0.0     0.0     1.0  ...    1.0        0.0       0.0   1.0       0.0
+
+[23 rows x 13 columns]
+.... load Categories Definition Map file:  customized/categories_definition.csv
+   category_index          category_label
+0               0                    SAFE
+1               1  SAFE_CONTAINS_CHILDREN
+2               2      ADULT_PORNORGRAPHY
+3               3    PORNORGRAPHY_NO_FACE
+4               4             CHILD_ABUSE
+classes_columns: ['class_index', 'class_label', 'breast', 'sexual', 'female', 'male', 'child', 'logo', 'adult', 'difficult', 'piercing', 'face', 'handcuff']
+image_file: ./images/bus.jpg
+>>>> cwd= /usr/src/app
+image_file: ./images/sub-folder/bus.jpg
+>>>> cwd= /usr/src/app
+image_file: ./images/sub-folder/sub-sub-folder/bus.jpg
+>>>> cwd= /usr/src/app
+image_file: ./images/zidane.jpg
+>>>> cwd= /usr/src/app
+{
+    "results": [
+        {
+            "meta_data": {
+                "media_type": "image",
+                "media_name": "images/bus.jpg",
+                "media_size_bytes": 487438,
+                "checksum_MD5": "5feb18e5e0e85956bb5bd9ec80bdcc26",
+                "labels_dir": "runs/my_scan_2021-09-10-04-21-46/labels",
+                "label_files": [
+                    "bus.txt"
+                ],
+                "scan_timestamp": "2021-09-10 04:21:57.685437"
+            },
+            "summary": {
+                "total_frames": 1,
+                "categories_assessed_level_max": 1,
+                "categories_summary": {
+                    "SAFE": 1.0,
+                    "SAFE_CONTAINS_CHILDREN": 0.0,
+                    "ADULT_PORNORGRAPHY": 0.0,
+                    "PORNORGRAPHY_NO_FACE": 0.0,
+                    "CHILD_ABUSE": 0.0
+                },
+                "features_summary": {
+                    "breast": 0.0,
+                    "sexual": 0.0,
+                    "female": 0.0,
+                    "male": 2.0,
+                    "child": 0.0,
+                    "logo": 2.0,
+                    "adult": 2.0,
+                    "difficult": 0.0,
+                    "piercing": 0.0,
+                    "face": 2.0,
+                    "handcuff": 0.0
+                },
+                "classes_summary": {
+                    "female_genitals": 0.0,
+                    "breast": 0.0,
+                    "male_genitals": 0.0,
+                    "intercourse": 0.0,
+                    "female_genitals_presentation": 0.0,
+                    "logo": 2.0,
+                    "anus": 0.0,
+                    "ejaculate": 0.0,
+                    "piercing": 0.0,
+                    "dildo": 0.0,
+                    "hand_cuffs": 0.0,
+                    "oral_sex": 0.0,
+                    "finger_penetration": 0.0,
+                    "baby_male": 0.0,
+                    "toddler_male": 0.0,
+                    "school_age_male": 0.0,
+                    "difficult_male": 0.0,
+                    "adult_male": 2.0,
+                    "baby_female": 0.0,
+                    "toddler_female": 0.0,
+                    "school_age_female": 0.0,
+                    "difficult_female": 0.0,
+                    "adult_female": 0.0
+                }
+            }
+        },
+        {
+            "meta_data": {
+                "media_type": "image",
+                "media_name": "images/sub-folder/bus.jpg",
+                "media_size_bytes": 487438,
+                "checksum_MD5": "5feb18e5e0e85956bb5bd9ec80bdcc26",
+                "labels_dir": "runs/my_scan_2021-09-10-04-21-46/sub-folder/labels",
+                "label_files": [
+                    "bus.txt"
+                ],
+                "scan_timestamp": "2021-09-10 04:21:57.696018"
+            },
+            "summary": {
+                "total_frames": 1,
+                "categories_assessed_level_max": 1,
+                "categories_summary": {
+                    "SAFE": 1.0,
+                    "SAFE_CONTAINS_CHILDREN": 0.0,
+                    "ADULT_PORNORGRAPHY": 0.0,
+                    "PORNORGRAPHY_NO_FACE": 0.0,
+                    "CHILD_ABUSE": 0.0
+                },
+                "features_summary": {
+                    "breast": 0.0,
+                    "sexual": 0.0,
+                    "female": 0.0,
+                    "male": 2.0,
+                    "child": 0.0,
+                    "logo": 2.0,
+                    "adult": 2.0,
+                    "difficult": 0.0,
+                    "piercing": 0.0,
+                    "face": 2.0,
+                    "handcuff": 0.0
+                },
+                "classes_summary": {
+                    "female_genitals": 0.0,
+                    "breast": 0.0,
+                    "male_genitals": 0.0,
+                    "intercourse": 0.0,
+                    "female_genitals_presentation": 0.0,
+                    "logo": 2.0,
+                    "anus": 0.0,
+                    "ejaculate": 0.0,
+                    "piercing": 0.0,
+                    "dildo": 0.0,
+                    "hand_cuffs": 0.0,
+                    "oral_sex": 0.0,
+                    "finger_penetration": 0.0,
+                    "baby_male": 0.0,
+                    "toddler_male": 0.0,
+                    "school_age_male": 0.0,
+                    "difficult_male": 0.0,
+                    "adult_male": 2.0,
+                    "baby_female": 0.0,
+                    "toddler_female": 0.0,
+                    "school_age_female": 0.0,
+                    "difficult_female": 0.0,
+                    "adult_female": 0.0
+                }
+            }
+        },
+        {
+            "meta_data": {
+                "media_type": "image",
+                "media_name": "images/sub-folder/sub-sub-folder/bus.jpg",
+                "media_size_bytes": 487438,
+                "checksum_MD5": "5feb18e5e0e85956bb5bd9ec80bdcc26",
+                "labels_dir": "runs/my_scan_2021-09-10-04-21-46/sub-folder/sub-sub-folder/labels",
+                "label_files": [
+                    "bus.txt"
+                ],
+                "scan_timestamp": "2021-09-10 04:21:57.706241"
+            },
+            "summary": {
+                "total_frames": 1,
+                "categories_assessed_level_max": 1,
+                "categories_summary": {
+                    "SAFE": 1.0,
+                    "SAFE_CONTAINS_CHILDREN": 0.0,
+                    "ADULT_PORNORGRAPHY": 0.0,
+                    "PORNORGRAPHY_NO_FACE": 0.0,
+                    "CHILD_ABUSE": 0.0
+                },
+                "features_summary": {
+                    "breast": 0.0,
+                    "sexual": 0.0,
+                    "female": 0.0,
+                    "male": 2.0,
+                    "child": 0.0,
+                    "logo": 2.0,
+                    "adult": 2.0,
+                    "difficult": 0.0,
+                    "piercing": 0.0,
+                    "face": 2.0,
+                    "handcuff": 0.0
+                },
+                "classes_summary": {
+                    "female_genitals": 0.0,
+                    "breast": 0.0,
+                    "male_genitals": 0.0,
+                    "intercourse": 0.0,
+                    "female_genitals_presentation": 0.0,
+                    "logo": 2.0,
+                    "anus": 0.0,
+                    "ejaculate": 0.0,
+                    "piercing": 0.0,
+                    "dildo": 0.0,
+                    "hand_cuffs": 0.0,
+                    "oral_sex": 0.0,
+                    "finger_penetration": 0.0,
+                    "baby_male": 0.0,
+                    "toddler_male": 0.0,
+                    "school_age_male": 0.0,
+                    "difficult_male": 0.0,
+                    "adult_male": 2.0,
+                    "baby_female": 0.0,
+                    "toddler_female": 0.0,
+                    "school_age_female": 0.0,
+                    "difficult_female": 0.0,
+                    "adult_female": 0.0
+                }
+            }
+        },
+        {
+            "meta_data": {
+                "media_type": "image",
+                "media_name": "images/zidane.jpg",
+                "media_size_bytes": 168949,
+                "checksum_MD5": "1a5e816e329b0dfc631579d2881f977c",
+                "labels_dir": "runs/my_scan_2021-09-10-04-21-46/labels",
+                "label_files": [
+                    "zidane.txt"
+                ],
+                "scan_timestamp": "2021-09-10 04:21:57.715912"
+            },
+            "summary": {
+                "total_frames": 1,
+                "categories_assessed_level_max": 1,
+                "categories_summary": {
+                    "SAFE": 1.0,
+                    "SAFE_CONTAINS_CHILDREN": 0.0,
+                    "ADULT_PORNORGRAPHY": 0.0,
+                    "PORNORGRAPHY_NO_FACE": 0.0,
+                    "CHILD_ABUSE": 0.0
+                },
+                "features_summary": {
+                    "breast": 0.0,
+                    "sexual": 0.0,
+                    "female": 0.0,
+                    "male": 3.0,
+                    "child": 0.0,
+                    "logo": 1.0,
+                    "adult": 2.0,
+                    "difficult": 1.0,
+                    "piercing": 0.0,
+                    "face": 3.0,
+                    "handcuff": 0.0
+                },
+                "classes_summary": {
+                    "female_genitals": 0.0,
+                    "breast": 0.0,
+                    "male_genitals": 0.0,
+                    "intercourse": 0.0,
+                    "female_genitals_presentation": 0.0,
+                    "logo": 1.0,
+                    "anus": 0.0,
+                    "ejaculate": 0.0,
+                    "piercing": 0.0,
+                    "dildo": 0.0,
+                    "hand_cuffs": 0.0,
+                    "oral_sex": 0.0,
+                    "finger_penetration": 0.0,
+                    "baby_male": 0.0,
+                    "toddler_male": 0.0,
+                    "school_age_male": 0.0,
+                    "difficult_male": 1.0,
+                    "adult_male": 2.0,
+                    "baby_female": 0.0,
+                    "toddler_female": 0.0,
+                    "school_age_female": 0.0,
+                    "difficult_female": 0.0,
+                    "adult_female": 0.0
+                }
+            }
+        }
+    ]
+}
+[
+    {
+        "meta_data": {
+            "media_type": "image",
+            "media_name": "images/bus.jpg",
+            "media_size_bytes": 487438,
+            "checksum_MD5": "5feb18e5e0e85956bb5bd9ec80bdcc26",
+            "labels_dir": "runs/my_scan_2021-09-10-04-21-46/labels",
+            "label_files": [
+                "bus.txt"
+            ],
+            "scan_timestamp": "2021-09-10 04:21:57.685437"
+        },
+        "summary": {
+            "total_frames": 1,
+            "categories_assessed_level_max": 1,
+            "categories_summary": {
+                "SAFE": 1.0,
+                "SAFE_CONTAINS_CHILDREN": 0.0,
+                "ADULT_PORNORGRAPHY": 0.0,
+                "PORNORGRAPHY_NO_FACE": 0.0,
+                "CHILD_ABUSE": 0.0
+            },
+            "features_summary": {
+                "breast": 0.0,
+                "sexual": 0.0,
+                "female": 0.0,
+                "male": 2.0,
+                "child": 0.0,
+                "logo": 2.0,
+                "adult": 2.0,
+                "difficult": 0.0,
+                "piercing": 0.0,
+                "face": 2.0,
+                "handcuff": 0.0
+            },
+            "classes_summary": {
+                "female_genitals": 0.0,
+                "breast": 0.0,
+                "male_genitals": 0.0,
+                "intercourse": 0.0,
+                "female_genitals_presentation": 0.0,
+                "logo": 2.0,
+                "anus": 0.0,
+                "ejaculate": 0.0,
+                "piercing": 0.0,
+                "dildo": 0.0,
+                "hand_cuffs": 0.0,
+                "oral_sex": 0.0,
+                "finger_penetration": 0.0,
+                "baby_male": 0.0,
+                "toddler_male": 0.0,
+                "school_age_male": 0.0,
+                "difficult_male": 0.0,
+                "adult_male": 2.0,
+                "baby_female": 0.0,
+                "toddler_female": 0.0,
+                "school_age_female": 0.0,
+                "difficult_female": 0.0,
+                "adult_female": 0.0
+            }
+        }
+    },
+    {
+        "meta_data": {
+            "media_type": "image",
+            "media_name": "images/sub-folder/bus.jpg",
+            "media_size_bytes": 487438,
+            "checksum_MD5": "5feb18e5e0e85956bb5bd9ec80bdcc26",
+            "labels_dir": "runs/my_scan_2021-09-10-04-21-46/sub-folder/labels",
+            "label_files": [
+                "bus.txt"
+            ],
+            "scan_timestamp": "2021-09-10 04:21:57.696018"
+        },
+        "summary": {
+            "total_frames": 1,
+            "categories_assessed_level_max": 1,
+            "categories_summary": {
+                "SAFE": 1.0,
+                "SAFE_CONTAINS_CHILDREN": 0.0,
+                "ADULT_PORNORGRAPHY": 0.0,
+                "PORNORGRAPHY_NO_FACE": 0.0,
+                "CHILD_ABUSE": 0.0
+            },
+            "features_summary": {
+                "breast": 0.0,
+                "sexual": 0.0,
+                "female": 0.0,
+                "male": 2.0,
+                "child": 0.0,
+                "logo": 2.0,
+                "adult": 2.0,
+                "difficult": 0.0,
+                "piercing": 0.0,
+                "face": 2.0,
+                "handcuff": 0.0
+            },
+            "classes_summary": {
+                "female_genitals": 0.0,
+                "breast": 0.0,
+                "male_genitals": 0.0,
+                "intercourse": 0.0,
+                "female_genitals_presentation": 0.0,
+                "logo": 2.0,
+                "anus": 0.0,
+                "ejaculate": 0.0,
+                "piercing": 0.0,
+                "dildo": 0.0,
+                "hand_cuffs": 0.0,
+                "oral_sex": 0.0,
+                "finger_penetration": 0.0,
+                "baby_male": 0.0,
+                "toddler_male": 0.0,
+                "school_age_male": 0.0,
+                "difficult_male": 0.0,
+                "adult_male": 2.0,
+                "baby_female": 0.0,
+                "toddler_female": 0.0,
+                "school_age_female": 0.0,
+                "difficult_female": 0.0,
+                "adult_female": 0.0
+            }
+        }
+    },
+    {
+        "meta_data": {
+            "media_type": "image",
+            "media_name": "images/sub-folder/sub-sub-folder/bus.jpg",
+            "media_size_bytes": 487438,
+            "checksum_MD5": "5feb18e5e0e85956bb5bd9ec80bdcc26",
+            "labels_dir": "runs/my_scan_2021-09-10-04-21-46/sub-folder/sub-sub-folder/labels",
+            "label_files": [
+                "bus.txt"
+            ],
+            "scan_timestamp": "2021-09-10 04:21:57.706241"
+        },
+        "summary": {
+            "total_frames": 1,
+            "categories_assessed_level_max": 1,
+            "categories_summary": {
+                "SAFE": 1.0,
+                "SAFE_CONTAINS_CHILDREN": 0.0,
+                "ADULT_PORNORGRAPHY": 0.0,
+                "PORNORGRAPHY_NO_FACE": 0.0,
+                "CHILD_ABUSE": 0.0
+            },
+            "features_summary": {
+                "breast": 0.0,
+                "sexual": 0.0,
+                "female": 0.0,
+                "male": 2.0,
+                "child": 0.0,
+                "logo": 2.0,
+                "adult": 2.0,
+                "difficult": 0.0,
+                "piercing": 0.0,
+                "face": 2.0,
+                "handcuff": 0.0
+            },
+            "classes_summary": {
+                "female_genitals": 0.0,
+                "breast": 0.0,
+                "male_genitals": 0.0,
+                "intercourse": 0.0,
+                "female_genitals_presentation": 0.0,
+                "logo": 2.0,
+                "anus": 0.0,
+                "ejaculate": 0.0,
+                "piercing": 0.0,
+                "dildo": 0.0,
+                "hand_cuffs": 0.0,
+                "oral_sex": 0.0,
+                "finger_penetration": 0.0,
+                "baby_male": 0.0,
+                "toddler_male": 0.0,
+                "school_age_male": 0.0,
+                "difficult_male": 0.0,
+                "adult_male": 2.0,
+                "baby_female": 0.0,
+                "toddler_female": 0.0,
+                "school_age_female": 0.0,
+                "difficult_female": 0.0,
+                "adult_female": 0.0
+            }
+        }
+    },
+    {
+        "meta_data": {
+            "media_type": "image",
+            "media_name": "images/zidane.jpg",
+            "media_size_bytes": 168949,
+            "checksum_MD5": "1a5e816e329b0dfc631579d2881f977c",
+            "labels_dir": "runs/my_scan_2021-09-10-04-21-46/labels",
+            "label_files": [
+                "zidane.txt"
+            ],
+            "scan_timestamp": "2021-09-10 04:21:57.715912"
+        },
+        "summary": {
+            "total_frames": 1,
+            "categories_assessed_level_max": 1,
+            "categories_summary": {
+                "SAFE": 1.0,
+                "SAFE_CONTAINS_CHILDREN": 0.0,
+                "ADULT_PORNORGRAPHY": 0.0,
+                "PORNORGRAPHY_NO_FACE": 0.0,
+                "CHILD_ABUSE": 0.0
+            },
+            "features_summary": {
+                "breast": 0.0,
+                "sexual": 0.0,
+                "female": 0.0,
+                "male": 3.0,
+                "child": 0.0,
+                "logo": 1.0,
+                "adult": 2.0,
+                "difficult": 1.0,
+                "piercing": 0.0,
+                "face": 3.0,
+                "handcuff": 0.0
+            },
+            "classes_summary": {
+                "female_genitals": 0.0,
+                "breast": 0.0,
+                "male_genitals": 0.0,
+                "intercourse": 0.0,
+                "female_genitals_presentation": 0.0,
+                "logo": 1.0,
+                "anus": 0.0,
+                "ejaculate": 0.0,
+                "piercing": 0.0,
+                "dildo": 0.0,
+                "hand_cuffs": 0.0,
+                "oral_sex": 0.0,
+                "finger_penetration": 0.0,
+                "baby_male": 0.0,
+                "toddler_male": 0.0,
+                "school_age_male": 0.0,
+                "difficult_male": 1.0,
+                "adult_male": 2.0,
+                "baby_female": 0.0,
+                "toddler_female": 0.0,
+                "school_age_female": 0.0,
+                "difficult_female": 0.0,
+                "adult_female": 0.0
+            }
+        }
+    }
+]
+mongo_URI= mongodb://mongoadmin:mongoadmin@192.168.0.127:27017/?authSource=admin
+**** MongoDB Service: Not Available: mongodb://mongoadmin:mongoadmin@192.168.0.127:27017/?authSource=admin
+**** MongoDB Service: Not Available: mongodb://mongoadmin:mongoadmin@192.168.0.127:27017/?authSource=admin
+Done. (0.317s)
+

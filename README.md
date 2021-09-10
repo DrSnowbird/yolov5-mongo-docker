@@ -12,6 +12,15 @@ or, explicitly disable GPU to use CPU.
 ./run.sh -c
 ```
 
+## Compatibility
+The following versions of PyTorch is used to build the Container. If you need to use different version, you may have to modify Dockerfile PyTorch version to work.
+* HOST's Nvidia driver: NVIDIA-SMI 470.63.01 + CUDA 111
+* Container's PyTorch v01.9 (Stable) Linux + CUDA 111
+Here is the modifications used following PyToch's Recommendations:
+```
+pip3 install torch==1.9.0+cu111 torchvision==0.10.0+cu111 torchaudio==0.9.0 -f https://download.pytorch.org/whl/torch_stable.html
+```
+
 ## Run (GPU/Nvidia - Auto Enable)
 * To run GPU/Nvidia, you need to install the Nvidia Driver first and then install 'nvidia-docker2'.
 * Please refer to [Nvidia Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker) documentation for how to install properly
@@ -122,6 +131,10 @@ If you want to map to different directory for certificates, e.g., /home/develope
 ```
 3. And, inside the Docker startup script to invoke the `~/scripts/setup_system_certificates.sh`. Note that the script assumes the certficates are in `/certificates` directory.
 4. The script `~/scripts/setup_system_certificates.sh` will automatic copy to target directory and setup certificates for both System commands (wget, curl, etc) to use and Web Browsers'.
+
+# Resources (Images Labeling Tools)
+There are no standards for image/video object labeling for training. However, the following resources URLs might help you to find proper tools for me.
+[image labeling for training](https://becominghuman.ai/how-to-label-image-data-for-machine-learning-and-deep-learning-training-414686d0d1ee)
 
 ----
 # (Inherited from upstream)
