@@ -270,3 +270,4 @@ fabric.properties
 !images/sub-folder
 !images/sub-folder/sub-sub-folder/bus.jpg
 !images/sub-folder/bus.jpg
+!doc/
