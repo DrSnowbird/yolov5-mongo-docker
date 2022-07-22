@@ -77,8 +77,8 @@ make up
 ```
 
 ## NVIDIA CUDA Error (if you see one)
-* If you see the following error NVIDIA CUDA error, it means that somehow you GPU driver is accessiable (mostly reboot will solve the problem).
-However, you can simply run with CPU only
+* If you see the following error NVIDIA CUDA error, it means that somehow you GPU driver is not accessiable (mostly reboot will solve the problem).
+However, you can simply run with CPU only (instead of GPU if it is acceptable performance or if you don't want to reboot your Ubuntu).
 ```
 RuntimeError: CUDA error: no kernel image is available for execution on the device
 CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
