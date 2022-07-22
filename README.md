@@ -79,70 +79,56 @@ make up
 ## NVIDIA CUDA Error (if you see one)
 * If you see the following error NVIDIA CUDA error, it means that somehow you GPU driver is not accessiable (mostly reboot will solve the problem).
 However, you can simply run with CPU only (instead of GPU if it is acceptable performance or if you don't want to reboot your Ubuntu).
-```
-RuntimeError: CUDA error: no kernel image is available for execution on the device
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-```
+    ```
+    RuntimeError: CUDA error: no kernel image is available for execution on the device
+    CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
+    For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
+    ```
 * This could happend when you "sleep/suspend" you Ubuntu host and then wake up. Then, NVIDIA GPU won't be accessible though you are so sure that you install all the needed NVIDIA driver and CUDA etc. -- Something NVIDIA driver can't handle Ubuntu's 'sleep/suspend'. You can just run with CPU flag as below, if you don't want to reboot your Ubunut Linux.
-```
-./run.sh -c
-```
+    ```
+    ./run.sh -c
+    ```
 
 ## Outputs of Run - processed images
-* The output results will be in "./runs" folder as sub-folders.
+* The output results will be in your Ubunut host's  "./runs" folder as sub-folders.
+* You can also use any Web-browsers to view the results folders, "./runs":
+    ```
+    http://0.0.0.0:18883/jetty_base/
+    ```
+* You can see the [sample Web page](https://github.com/DrSnowbird/yolov5-mongo-docker/blob/master/doc/yolov5-fileserver.png) in
+    ```
+    ./doc/yolov5-fileserver.png
+    ```
 
-## 
-```
-The output will be your Host computer directory, "./runs"
-
-## Start Web-based (Jetty) File Server to view the Results
-```
-make up-fileserver
-or
-sudo docker-compose up -d yolov5-fileserver
-```
-You can use any Web-browsers to view the results folders, "./runs":
-```
-http://0.0.0.0:18883/jetty_base/
-```
-You can see the [sample Web page](https://github.com/DrSnowbird/yolov5-mongo-docker/blob/master/doc/yolov5-fileserver.png) in
-```
-./doc/yolov5-fileserver.png
-```
-
-## Start MongoDB and MongoDB Express (Web-based GUI)
-MongoDB can be used to store the results of 'detect.py' for
-large batch process when providing web services, e.g., REST API or Web UI.
-```
-make up-mongo
-```
-Then, access Mongo Express Web UI by opening URL using Web browsers, e.g, Firefox, Chrome, etc.
+* To access Mongo Express Web UI by opening URL using Web browsers, e.g, Firefox, Chrome, etc.
 ```
 http://0.0.0.0:28083/
 ```
 
-# Customized (Detect/Test)
-```
-1. Create a folder, "./customized" with whatever files and Shell script (detect.py or detect.sh) you want
-├── images
-│   ├── bus.jpg
-│   └── zidane.jpg
-├── requirements.txt
-├── run-detect.sh
-└── (Whatever_Your_Own_Model_v5.pt)
+# (OPTIONAL Extension by you) Customized (Detect/Test)
+
+1. Create a folder, "./customized" with whatever files and Shell script (detect.py or detect.sh) and make sure you have a file in 'cutomized/run-detect.sh' for your own extension to process the images/videos differently than default demo.
+    ```
+    ├── images
+    │   ├── bus.jpg
+    │   └── zidane.jpg
+    ├── requirements.txt
+    ├── run-detect.sh
+    └── (Whatever_Your_Own_Model_v5.pt)
+    ```
 
 2. From the Host Shell Xterm: ./run.sh
 It will first call ./run-detect.sh (default) which, in turns, it will run your ./customized/run-detect.sh to do whatever you coded your logic in it and it will generate results in the HOST computer directory, ./runs folder.
 
 3. Results outside the Container (in Host computer's currect yolov5-docker/runs directory) as below:
-./runs
-└── detect
-    ├── exp
-    │   ├── bus.jpg
-    │   ├── labels
-    │   └── zidane.jpg
-```
+    ```
+    ./runs
+    └── detect
+        ├── exp
+        │   ├── bus.jpg
+        │   ├── labels
+        │   └── zidane.jpg
+    ```
 
 # Proxy & Certificate Setup
 * [Setup System and Browsers Root Certificate](https://thomas-leister.de/en/how-to-import-ca-root-certificate/)
@@ -167,6 +153,7 @@ There are no standards for image/video object labeling for training. However, th
 
 ----
 # (Inherited from upstream)
+
 <a href="https://apps.apple.com/app/id1452689527" target="_blank">
 <img src="https://user-images.githubusercontent.com/26833433/98699617-a1595a00-2377-11eb-8145-fc674eb9b1a7.jpg" width="1000"></a>
 &nbsp
