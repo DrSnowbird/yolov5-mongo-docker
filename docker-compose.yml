@@ -15,8 +15,8 @@ services:
       - GROUP_ID=${GROUP_ID:-1000}
       # - APP_HOME=${APP_HOME:-/home/developer/app}
       # - APP_MAIN=${APP_MAIN:-setup.sh}
-      - DOCKER_HOST_IP=${DOCKER_HOST_IP:-127.0.0.1}
-      - DOCKER_HOST_NAME=${DOCKER_HOST_NAME:-localhost}
+      - DOCKER_HOST_IP=${DOCKER_HOST_IP:-192.168.0.124}
+      - DOCKER_HOST_NAME=${DOCKER_HOST_NAME:-aurora}
       # ==== X11 Use only ====
       #- DISPLAY=$DISPLAY
       #- DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
@@ -25,20 +25,33 @@ services:
       #- VNC_RESOLUTION=1280x800 
       #- VNC_PW=vncpassword 
     volumes:
-      ## ==== Common Container mapping: ====
-      - /etc/hosts:/etc/hosts
-      # - /dev/shm:/dev/shm
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /tmp/.X11-unix:/tmp/.X11-unix
-      ## ==== Corporate Proxies Gateway Relay: ====
+      ## ==== Common mapping: ====
+      #- /etc/hosts:/etc/hosts
+      #- /dev/shm:/dev/shm
+      #- /tmp/.X11-unix:/tmp/.X11-unix
+      #- /var/run/docker.sock:/var/run/docker.sock
       #- ./certificates:/home/developer/certificates
-      ## ==== Use $HOME/data-docker as bUser's base directory: ====
-      #- $HOME/data-docker/tensorflow-python3-jupyter/data:/home/developer/data
-      #- $HOME/data-docker/tensorflow-python3-jupyter/workspace:/home/developer/workspace
-      ## ==== Use current directory as User's base directory: ====
-      - ./workspace:/home/developer/workspace
+      ## ==== Use $HOME/data-docker as base directory: ====
+      - $HOME/data-docker/yolov5-mongo-docker/data:/home/developer/data
+      - $HOME/data-docker/yolov5-mongo-docker/workspace:/home/developer/workspace
+      ## ==== Use current directory as root for mapping Volumes: ====
+      ## (You need to manually create those child directory: ./data, ./workspace, and others)
+      #- ./data:/home/developer/data
+      #- ./workspace:/home/developer/workspace
+      ## ==== App's additional mapping Volumes: ====
+      - /mnt/user1/DATA/Projects/M-projects/Yolo-from-work-gitlab/public-github-yolov5_customized/yolov5-mongo-docker/images:/usr/src/app/images
+      - /mnt/user1/DATA/Projects/M-projects/Yolo-from-work-gitlab/public-github-yolov5_customized/yolov5-mongo-docker/runs:/usr/src/app/runs
+      - /mnt/user1/DATA/Projects/M-projects/Yolo-from-work-gitlab/public-github-yolov5_customized/yolov5-mongo-docker/customized:/usr/src/app/customized
+      - /mnt/user1/DATA/Projects/M-projects/Yolo-from-work-gitlab/public-github-yolov5_customized/yolov5-mongo-docker/workspace:/usr/src/app/workspace
+      - /var/run/docker.sock:/var/run/docker.sock
+
     links:
-      - mongo
+      - yologv5-mongo
+    ## -------------------------------
+    ## -- Change to your specific port
+    ## -------------------------------
+    # ports:
+    #   - "12345:12345"
 
   yolov5-fileserver:
     image: openkbs/jetty-fileserver
@@ -53,46 +66,50 @@ services:
     env_file:
       - .env
     ports:
-      - 18882:8080
+      - 18883:8080
     volumes:
       - ./runs:/home/developer/jetty_base
 
-  mongo:
+  yologv5-mongo:
     image: mongo:latest
-    container_name: mongo
+    container_name: yologv5-mongo
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: mongoadmin
       MONGO_INITDB_ROOT_PASSWORD: mongoadmin
       MONGODB_AUTH_DATABASE: admin
     ports:
-      - 27017:27017
+      - 27037:27017
     #command: --smallfiles 
     volumes:
       - type: volume
-        source: mongodb_data_volume
+        source: yologv5-mongodb_data_volume
         target: /data/db
 
 
-  mongo-express:
+  yologv5-mongo-express:
     image: mongo-express
-    container_name: mongo-express
+    container_name: yologv5-mongo-express
     restart: always
     ports:
-      - "28081:8081"
+      - "28083:8081"
     environment:
       ME_CONFIG_MONGODB_AUTH_DATABASE: admin
-      ME_CONFIG_MONGODB_AUTH_USERNAME: mongoadmin
-      ME_CONFIG_MONGODB_AUTH_PASSWORD: mongoadmin
+      ME_CONFIG_MONGODB_SERVER: yologv5-mongo
+      ME_CONFIG_MONGODB_PORT: "27017"
+      #ME_CONFIG_BASICAUTH_USERNAME: admin
+      #ME_CONFIG_BASICAUTH_PASSWORD: changeme
+      #ME_CONFIG_MONGODB_AUTH_DATABASE: admin
       ME_CONFIG_MONGODB_ADMINUSERNAME: mongoadmin
       ME_CONFIG_MONGODB_ADMINPASSWORD: mongoadmin
+      ME_CONFIG_MONGODB_URL: mongodb://mongoadmin:mongoadmin@yologv5-mongo:27017/
     depends_on:
-      - mongo
+      - yologv5-mongo
     links:
-      - mongo
+      - yologv5-mongo
 
 volumes:
-  mongodb_data_volume:
+  yologv5-mongodb_data_volume:
     # driver: local 
 
 #networks:

@@ -91,18 +91,19 @@ pull:
 	fi
 
 
-up: build
-	sudo docker-compose up -d
+up:
+	bin/auto-config-all.sh
+	sudo docker-compose up -d yolov5-fileserver yologv5-mongo yologv5-mongo-express
 
 up-fileserver:
 	sudo docker-compose up -d yolov5-fileserver
 
 
 up-mongo: up-mongo-express
-	sudo docker-compose up -d mongo
+	sudo docker-compose up -d yologv5-mongo
 
 up-mongo-express: 
-	sudo docker-compose up -d mongo-express
+	sudo docker-compose up -d yologv5-mongo-express
 
 down:
 	sudo docker-compose down

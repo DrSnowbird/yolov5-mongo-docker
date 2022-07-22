@@ -21,7 +21,8 @@
 *.json
 
 !doc/yolov5-fileserver.png
-**_SAVED
+**/*SAVED
+**/*BACKUP
 *.cfg
 !cfg/yolov3*.cfg
 
