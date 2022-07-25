@@ -41,7 +41,7 @@ services:
       ## ==== App's additional mapping Volumes: ====
       #{{MORE_VOLUMES_MAPPING}}
     links:
-      - yologv5-mongo
+      - yolov5-mongo
     ## -------------------------------
     ## -- Change to your specific port
     ## -------------------------------
@@ -65,9 +65,9 @@ services:
     volumes:
       - ./runs:/home/developer/jetty_base
 
-  yologv5-mongo:
+  yolov5-mongo:
     image: mongo:latest
-    container_name: yologv5-mongo
+    container_name: yolov5-mongo
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: mongoadmin
@@ -78,33 +78,33 @@ services:
     #command: --smallfiles 
     volumes:
       - type: volume
-        source: yologv5-mongodb_data_volume
+        source: yolov5-mongodb_data_volume
         target: /data/db
 
 
-  yologv5-mongo-express:
+  yolov5-mongo-express:
     image: mongo-express
-    container_name: yologv5-mongo-express
+    container_name: yolov5-mongo-express
     restart: always
     ports:
       - "28083:8081"
     environment:
       ME_CONFIG_MONGODB_AUTH_DATABASE: admin
-      ME_CONFIG_MONGODB_SERVER: yologv5-mongo
+      ME_CONFIG_MONGODB_SERVER: yolov5-mongo
       ME_CONFIG_MONGODB_PORT: "27017"
       #ME_CONFIG_BASICAUTH_USERNAME: admin
       #ME_CONFIG_BASICAUTH_PASSWORD: changeme
       #ME_CONFIG_MONGODB_AUTH_DATABASE: admin
       ME_CONFIG_MONGODB_ADMINUSERNAME: mongoadmin
       ME_CONFIG_MONGODB_ADMINPASSWORD: mongoadmin
-      ME_CONFIG_MONGODB_URL: mongodb://mongoadmin:mongoadmin@yologv5-mongo:27017/
+      ME_CONFIG_MONGODB_URL: mongodb://mongoadmin:mongoadmin@yolov5-mongo:27017/
     depends_on:
-      - yologv5-mongo
+      - yolov5-mongo
     links:
-      - yologv5-mongo
+      - yolov5-mongo
 
 volumes:
-  yologv5-mongodb_data_volume:
+  yolov5-mongodb_data_volume:
     # driver: local 
 
 #networks:

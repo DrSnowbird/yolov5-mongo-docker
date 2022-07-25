@@ -93,17 +93,16 @@ pull:
 
 up:
 	bin/auto-config-all.sh
-	sudo docker-compose up -d yolov5-fileserver yologv5-mongo yologv5-mongo-express
+	sudo docker-compose up --remove-orphans -d yolov5-fileserver yolov5-mongo yolov5-mongo-express
 
 up-fileserver:
 	sudo docker-compose up -d yolov5-fileserver
 
-
-up-mongo: up-mongo-express
-	sudo docker-compose up -d yologv5-mongo
+up-mongo:
+	sudo docker-compose up -d yolov5-mongo
 
 up-mongo-express: 
-	sudo docker-compose up -d yologv5-mongo-express
+	sudo docker-compose up -d yolov5-mongo-express
 
 down:
 	sudo docker-compose down
