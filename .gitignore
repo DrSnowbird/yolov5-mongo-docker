@@ -23,6 +23,8 @@
 !doc/yolov5-fileserver.png
 **/*SAVED
 **/*BACKUP
+.env
+docker-compose.yml
 *.cfg
 !cfg/yolov3*.cfg
 
