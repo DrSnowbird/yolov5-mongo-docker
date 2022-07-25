@@ -23,8 +23,6 @@
 !doc/yolov5-fileserver.png
 **/*SAVED
 **/*BACKUP
-./.env
-./docker-compose.yml
 *.cfg
 !cfg/yolov3*.cfg
 
@@ -274,3 +272,7 @@ fabric.properties
 !images/sub-folder/sub-sub-folder/bus.jpg
 !images/sub-folder/bus.jpg
 !doc/
+
+**/.env
+**/docker-compose.yml
+
