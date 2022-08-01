@@ -321,6 +321,14 @@ DOCKER_VOLUME_DIR="/home/developer"
 #### ---- Detect Docker Run Env files ----
 ###################################################
 
+function auto_generate_env_file() {
+    if [ ! -s "./.env" ]; then
+        bin/auto-config-env.sh
+        ls -al ./.env
+    fi
+}
+auto_generate_env_file
+
 function detectDockerRunEnvFile() {
     curr_dir=`pwd`
     if [ -s "${DOCKER_ENV_FILE}" ]; then
@@ -892,5 +900,4 @@ case "${BUILD_TYPE}" in
         ;;
 
 esac
-
 
