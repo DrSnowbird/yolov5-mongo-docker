@@ -7,7 +7,7 @@ git clone https://github.com/DrSnowbird/yolov5-docker.git
 ```
 
 # #### Deprecated and Replaced by [drsnowbird/yolov5-docker](https://github.com/DrSnowbird/yolov5-docker) Now!!
-# #### Soon this githut repo will be into 'archived mode'
+# #### Soon this github repo will be into 'archived mode'
 #
 # Yolov5 Docker (Python 3.8 build - CPU default / GPU also) with Web File Server to view Results
 * `New`- './run.sh -g' to run Nvidia CUDA Docker (though you need to install Nvidia Driver etc.)
