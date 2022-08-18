@@ -1,4 +1,4 @@
-# (NOTICE) This project is now subsumed by [drsnowbird/yolov5-docker](https://github.com/DrSnowbird/yolov5-docker) which provides all the same functions including yolov5 detectio simple enivorment, mongodb, mongo-express, ftp-file-server for supporing your applications' needs.
+# (NOTICE) This project is now subsumed by [drsnowbird/yolov5-docker](https://github.com/DrSnowbird/yolov5-docker) which provides all the same functions including yolov5 detection simple enivorment, mongodb, mongo-express, ftp-file-server for supporing your application needs.
 
 # Migration procedure:
 - Simply use the new [drsnowbird/yolov5-docker](https://github.com/DrSnowbird/yolov5-docker) to git clone the new git repo instead of this deprecated github repo. And, all the supported functions are identical in the new github repo.
